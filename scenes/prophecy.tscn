@@ -1,0 +1,174 @@
+[gd_scene load_steps=9 format=3 uid="uid://62kem80pm0aa"]
+
+[ext_resource type="Script" path="res://scripts/prophecy.gd" id="1_fth8o"]
+[ext_resource type="Texture2D" uid="uid://cshy3hxl3cgbn" path="res://assets/door_01.jpg" id="2_gwday"]
+[ext_resource type="Texture2D" uid="uid://bd8h7c0ekdpfn" path="res://assets/background_01.png" id="2_n7pln"]
+[ext_resource type="AudioStream" uid="uid://cchwfbqae2hge" path="res://assets/sfx/foreboding-theme.ogg" id="2_r8h2h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs1hu"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_txmar"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u3f54"]
+resource_name = "intro_fade-in"
+length = 3.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ecfqv"]
+_data = {
+"RESET": SubResource("Animation_txmar"),
+"intro_fade-in": SubResource("Animation_u3f54")
+}
+
+[node name="hikikomori_room" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fth8o")
+nodes_paths = Array[NodePath]([NodePath("prophecy_stages/encounter/VBoxContainer/prophecy_bar"), NodePath("prophecy_stages/encounter/VBoxContainer/prophecy_bar/prophecy_timer"), NodePath("prophecy_stages/intro/VBoxContainer/knock_bar/knock_timer"), NodePath("prophecy_stages/intro/VBoxContainer/knock_bar"), NodePath("prophecy_stages/intro/VBoxContainer/knock_bar/knock_button"), NodePath("prophecy_stages/intro/VBoxContainer/knock_reaction")])
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cs1hu")
+
+[node name="prophecy_stages" type="TabContainer" parent="."]
+modulate = Color(0, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tabs_visible = false
+
+[node name="intro" type="MarginContainer" parent="prophecy_stages"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="prophecy_stages/intro"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="prophecy_stages/intro/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "you are brought to meet the hikikomori sybil to know your fate"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="prophecy_stages/intro/VBoxContainer"]
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_gwday")
+expand_mode = 1
+
+[node name="knock_bar" type="ProgressBar" parent="prophecy_stages/intro/VBoxContainer"]
+custom_minimum_size = Vector2(512, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+show_percentage = false
+
+[node name="knock_button" type="Button" parent="prophecy_stages/intro/VBoxContainer/knock_bar" groups=["buttons"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "knock"
+
+[node name="knock_timer" type="Timer" parent="prophecy_stages/intro/VBoxContainer/knock_bar"]
+wait_time = 0.05
+
+[node name="knock_reaction" type="Label" parent="prophecy_stages/intro/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="encounter" type="MarginContainer" parent="prophecy_stages"]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="prophecy_stages/encounter"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_n7pln")
+expand_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="prophecy_stages/encounter"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="prophecy_stages/encounter/VBoxContainer"]
+layout_mode = 2
+text = "the sybilla is deciding your fate
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="prophecy_bar" type="ProgressBar" parent="prophecy_stages/encounter/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="prophecy_timer" type="Timer" parent="prophecy_stages/encounter/VBoxContainer/prophecy_bar"]
+wait_time = 0.1
+
+[node name="prophecy" type="MarginContainer" parent="prophecy_stages"]
+visible = false
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="prophecy_stages/prophecy"]
+layout_mode = 2
+
+[node name="sounds" type="AudioStreamPlayer" parent="."]
+
+[node name="ost" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_r8h2h")
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../prophecy_stages")
+libraries = {
+"": SubResource("AnimationLibrary_ecfqv")
+}
+
+[connection signal="pressed" from="prophecy_stages/intro/VBoxContainer/knock_bar/knock_button" to="." method="_on_knock_button_pressed"]
+[connection signal="timeout" from="prophecy_stages/intro/VBoxContainer/knock_bar/knock_timer" to="." method="_on_knock_timer_timeout"]
+[connection signal="timeout" from="prophecy_stages/encounter/VBoxContainer/prophecy_bar/prophecy_timer" to="." method="_on_prophecy_timer_timeout"]

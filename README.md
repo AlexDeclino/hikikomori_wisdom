@@ -1,0 +1,2 @@
+# hikikomori_wisdom
+ 
