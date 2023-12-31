@@ -1,10 +1,10 @@
+Label
 TextureRect
 Timer
 ProgressBar
 Panel
 ColorRect
 Polygon2D
-Label
 VBoxContainer
 AnimationPlayer
 AudioStreamPlayer

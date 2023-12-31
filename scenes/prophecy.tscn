@@ -55,6 +55,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fth8o")
 nodes_paths = Array[NodePath]([NodePath("prophecy_stages/encounter/VBoxContainer/prophecy_bar"), NodePath("prophecy_stages/encounter/VBoxContainer/prophecy_bar/prophecy_timer"), NodePath("prophecy_stages/intro/VBoxContainer/knock_bar/knock_timer"), NodePath("prophecy_stages/intro/VBoxContainer/knock_bar"), NodePath("prophecy_stages/intro/VBoxContainer/knock_bar/knock_button"), NodePath("prophecy_stages/intro/VBoxContainer/knock_reaction")])
+knock_speed = 5.0
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -76,6 +77,7 @@ grow_vertical = 2
 tabs_visible = false
 
 [node name="intro" type="MarginContainer" parent="prophecy_stages"]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="prophecy_stages/intro"]
@@ -148,14 +150,21 @@ layout_mode = 2
 size_flags_vertical = 8
 
 [node name="prophecy_timer" type="Timer" parent="prophecy_stages/encounter/VBoxContainer/prophecy_bar"]
-wait_time = 0.1
+wait_time = 0.03
 
 [node name="prophecy" type="MarginContainer" parent="prophecy_stages"]
-visible = false
 layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="prophecy_stages/prophecy"]
 layout_mode = 2
+color = Color(1, 0, 1, 1)
+
+[node name="Label" type="Label" parent="prophecy_stages/prophecy"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "aaaa"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="sounds" type="AudioStreamPlayer" parent="."]
 

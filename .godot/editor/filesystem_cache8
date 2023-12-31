@@ -1,7 +1,8 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1703949162
+::res://::1704034207
 icon.svg::CompressedTexture2D::5609905896336445859::1703936017::1703936026::1::::<><>::
-::res://assets/::1703972956
+README.md::TextFile::-1::1703975200::0::1::::<><>::
+::res://assets/::1703972959
 background_01.png::CompressedTexture2D::2665593988707543915::1703243683::1703949335::1::::<><>::
 door_01.jpg::CompressedTexture2D::6052198810936180919::1703972948::1703972959::1::::<><>::
 ::res://assets/cursors/::1703949297
@@ -18,7 +19,7 @@ foreboding-theme.ogg::AudioStreamOggVorbis::4929014478997707652::1703947477::170
 knock_knock.wav::AudioStreamWAV::3131069704634668975::1657225098::1703951028::1::::<><>::
 laugh_01.wav::AudioStreamWAV::3350562712051368388::1413887336::1703951028::1::::<><>::
 laugh_02.wav::AudioStreamWAV::868507519016958123::1413887336::1703951028::1::::<><>::
-::res://scenes/::1703972898
-prophecy.tscn::PackedScene::2232207347657080724::1703972898::0::1::::<><>::res://scripts/prophecy.gd<>uid://bd8h7c0ekdpfn::::res://assets/background_01.png<>uid://cchwfbqae2hge::::res://assets/sfx/foreboding-theme.ogg
-::res://scripts/::1703972890
-prophecy.gd::GDScript::-1::1703972890::0::1::::<>Control<>::
+::res://scenes/::1704035594
+prophecy.tscn::PackedScene::2232207347657080724::1704035594::0::1::::<><>::res://scripts/prophecy.gd<>uid://cshy3hxl3cgbn::::res://assets/door_01.jpg<>uid://bd8h7c0ekdpfn::::res://assets/background_01.png<>uid://cchwfbqae2hge::::res://assets/sfx/foreboding-theme.ogg
+::res://scripts/::1704035549
+prophecy.gd::GDScript::-1::1704035549::0::1::::<>Control<>::
