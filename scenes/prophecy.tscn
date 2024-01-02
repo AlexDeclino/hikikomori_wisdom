@@ -74,7 +74,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-tabs_visible = false
 
 [node name="intro" type="MarginContainer" parent="prophecy_stages"]
 visible = false
@@ -92,7 +91,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="prophecy_stages/intro/VBoxContainer"]
-custom_minimum_size = Vector2(512, 512)
+custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -129,8 +128,10 @@ visible = false
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="prophecy_stages/encounter"]
-visible = false
+custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("2_n7pln")
 expand_mode = 5
 
@@ -160,11 +161,13 @@ layout_mode = 2
 color = Color(1, 0, 1, 1)
 
 [node name="Label" type="Label" parent="prophecy_stages/prophecy"]
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
-size_flags_vertical = 1
+size_flags_horizontal = 4
 text = "aaaa"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="sounds" type="AudioStreamPlayer" parent="."]
 
@@ -178,6 +181,20 @@ libraries = {
 "": SubResource("AnimationLibrary_ecfqv")
 }
 
+[node name="Button" type="Button" parent="." groups=["buttons"]]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "test prophecy repeat"
+
 [connection signal="pressed" from="prophecy_stages/intro/VBoxContainer/knock_bar/knock_button" to="." method="_on_knock_button_pressed"]
 [connection signal="timeout" from="prophecy_stages/intro/VBoxContainer/knock_bar/knock_timer" to="." method="_on_knock_timer_timeout"]
 [connection signal="timeout" from="prophecy_stages/encounter/VBoxContainer/prophecy_bar/prophecy_timer" to="." method="_on_prophecy_timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

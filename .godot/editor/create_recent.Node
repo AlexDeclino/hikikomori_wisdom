@@ -1,3 +1,4 @@
+Button
 Label
 TextureRect
 Timer
@@ -8,6 +9,5 @@ Polygon2D
 VBoxContainer
 AnimationPlayer
 AudioStreamPlayer
-Button
 MarginContainer
 TabContainer
