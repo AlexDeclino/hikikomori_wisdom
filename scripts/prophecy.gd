@@ -2,6 +2,7 @@ extends Control
 
 @export var nodes_paths:Array[NodePath]
 @export var knock_speed:float
+
 var knock_knock = 0
 
 #sounds
@@ -22,6 +23,7 @@ var random_pics = [
 #lists
 var reactions_array = []
 var words_array = []
+var preword_array = []
 
 
 func _ready():
@@ -32,6 +34,7 @@ func _ready():
 	#load all words lists into arrays
 	_load_file_list("res://assets/texts/reactions.txt", reactions_array)
 	_load_file_list("res://assets/texts/words.txt", words_array)
+	_load_file_list("res://assets/texts/pre_words.txt", preword_array)
 	
 
 	#apply settings for cursor and focus to all buttons
@@ -129,28 +132,23 @@ func _select_prophecy():
 
 func _prophecy_word():
 	print("word")
-	var chosen
-	var more_less_add = randi_range(0,2)
-	var more_less_chosen = var_to_str(more_less_add)
+	var chosen_word
+	var chosen_pre
+	var final_word
+	preword_array.shuffle()
+	chosen_pre = preword_array.front()
 	words_array.shuffle()
-	chosen = words_array.front()
+	chosen_word = words_array.front()
 	words_array.pop_front()
-	match more_less_chosen:
-		"0":
-			pass
-		"1":
-			chosen = "more " + chosen
-		"2":
-			chosen = "less " + chosen
-		_:
-			print("broken")
-	return chosen
+	final_word = chosen_pre + " " + chosen_word
+	return final_word
 	
 func _prophecy_or():
 	print("or")
 	var or_and = [
 		" or ",
-		" and "
+		" and ",
+		" with "
 	]
 	var max_loops = 5
 	var loops = randi_range(2, max_loops)
@@ -185,6 +183,20 @@ func _prophecy_sentence():
 #debug
 #func _on_button_pressed():
 #	DisplayServer.window_set_size(Vector2i(512,512))
+#var more_less_add = randi_range(0,2)
+#	var more_less_chosen = var_to_str(more_less_add)
+#	words_array.shuffle()
+#	chosen = words_array.front()
+#	words_array.pop_front()
+#	match more_less_chosen:
+#		"0":
+#			pass
+#		"1":
+#			chosen = "more " + chosen
+#		"2":
+#			chosen = "less " + chosen
+#		_:
+#			print("broken")
 
 
 func _on_button_pressed():

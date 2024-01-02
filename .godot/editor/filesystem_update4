@@ -1,4 +1,4 @@
 res://scenes/prophecy.tscn
-res://scripts/prophecy.gd
 res://assets/texts/words.txt
-res://assets/texts/reactions.txt
+res://scripts/prophecy.gd
+res://assets/texts/pre_words.txt
