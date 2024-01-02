@@ -130,27 +130,43 @@ func _select_prophecy():
 func _prophecy_word():
 	print("word")
 	var chosen
+	var more_less_add = randi_range(0,2)
+	var more_less_chosen = var_to_str(more_less_add)
 	words_array.shuffle()
 	chosen = words_array.front()
 	words_array.pop_front()
+	match more_less_chosen:
+		"0":
+			pass
+		"1":
+			chosen = "more " + chosen
+		"2":
+			chosen = "less " + chosen
+		_:
+			print("broken")
 	return chosen
 	
 func _prophecy_or():
 	print("or")
+	var or_and = [
+		" or ",
+		" and "
+	]
 	var max_loops = 5
 	var loops = randi_range(2, max_loops)
 	var or_sentence:String
 	var current_word:String
 	for i in loops :
+		var random_index = randi() % or_and.size()
 		words_array.shuffle()
 		current_word = words_array.front()
 		words_array.pop_front()
 		if i == 0 :
-			or_sentence = current_word + " or "
+			or_sentence = current_word + or_and[random_index]
 		elif i == loops - 1 :
 			or_sentence = or_sentence + current_word
 		else: 
-			or_sentence = or_sentence + current_word + " or " 
+			or_sentence = or_sentence + current_word + or_and[random_index]
 		
 #	words_selected.append(words_array.front())	
 #	for y in words_selected :
