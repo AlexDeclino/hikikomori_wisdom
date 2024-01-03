@@ -1,9 +1,9 @@
 Button
+MarginContainer
 Timer
 Label
 VBoxContainer
 TextureRect
-MarginContainer
 ProgressBar
 Panel
 ColorRect

@@ -56,8 +56,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fth8o")
-nodes_paths = Array[NodePath]([NodePath("prophecy_stages/reading/VBoxContainer/prophecy_bar"), NodePath("prophecy_stages/reading/VBoxContainer/prophecy_bar/prophecy_timer"), NodePath("prophecy_stages/doorstep/knock_timer"), NodePath("prophecy_stages/doorstep/VBoxContainer/knock_bar"), NodePath("prophecy_stages/doorstep/knock_button"), NodePath("prophecy_stages/doorstep/VBoxContainer/knock_reaction"), NodePath("prophecy_stages/intro/flash_timer")])
+nodes_paths = Array[NodePath]([NodePath("prophecy_stages/reading/VBoxContainer/prophecy_bar"), NodePath("prophecy_stages/reading/VBoxContainer/prophecy_bar/prophecy_timer"), NodePath("prophecy_stages/doorstep/knock_timer"), NodePath("prophecy_stages/doorstep/VBoxContainer/knock_bar"), NodePath("prophecy_stages/doorstep/knock_button"), NodePath("prophecy_stages/doorstep/VBoxContainer/knock_label"), NodePath("prophecy_stages/intro/flash_timer")])
 knock_speed = 8.0
+prophechy_speed = 10
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -79,7 +80,6 @@ grow_vertical = 2
 tabs_visible = false
 
 [node name="intro" type="MarginContainer" parent="prophecy_stages"]
-visible = false
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="prophecy_stages/intro"]
@@ -113,7 +113,7 @@ wait_time = 0.05
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="prophecy_stages/doorstep/VBoxContainer"]
+[node name="knock_label" type="Label" parent="prophecy_stages/doorstep/VBoxContainer"]
 custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -136,11 +136,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 show_percentage = false
-
-[node name="knock_reaction" type="Label" parent="prophecy_stages/doorstep/VBoxContainer"]
-layout_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="room" type="MarginContainer" parent="prophecy_stages"]
 visible = false
@@ -199,9 +194,10 @@ layout_mode = 2
 size_flags_vertical = 8
 
 [node name="prophecy_timer" type="Timer" parent="prophecy_stages/reading/VBoxContainer/prophecy_bar"]
-wait_time = 0.03
+wait_time = 0.05
 
 [node name="prophecy" type="MarginContainer" parent="prophecy_stages"]
+visible = false
 layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="prophecy_stages/prophecy"]
@@ -226,6 +222,12 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "replay"
+
+[node name="restart_button" type="Button" parent="prophecy_stages/prophecy"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "restart"
 
 [node name="sounds" type="AudioStreamPlayer" parent="."]
 
@@ -260,4 +262,5 @@ text = "quick replay"
 [connection signal="pressed" from="prophecy_stages/room/ask_button" to="." method="_on_ask_button_pressed"]
 [connection signal="timeout" from="prophecy_stages/reading/VBoxContainer/prophecy_bar/prophecy_timer" to="." method="_on_prophecy_timer_timeout"]
 [connection signal="pressed" from="prophecy_stages/prophecy/replay_button" to="." method="_on_ask_button_pressed"]
+[connection signal="pressed" from="prophecy_stages/prophecy/restart_button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="replay_button" to="." method="_on_button_pressed"]
