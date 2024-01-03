@@ -1,13 +1,13 @@
-Label
 Button
+Timer
+Label
+VBoxContainer
 TextureRect
 MarginContainer
-Timer
 ProgressBar
 Panel
 ColorRect
 Polygon2D
-VBoxContainer
 AnimationPlayer
 AudioStreamPlayer
 TabContainer

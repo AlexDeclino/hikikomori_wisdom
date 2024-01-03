@@ -4,12 +4,14 @@ extends Control
 @export var knock_speed:float
 
 var knock_knock = 0
+var current_stage = 0
 
 #sounds
 var knock_sound = preload("res://assets/sfx/knock_knock.wav")
 var prophecy_calculating = preload("res://assets/sfx/laugh_01.wav")
 var prophecy_finished = preload("res://assets/sfx/1054.wav")
 var snap = preload("res://assets/sfx/snap.wav")
+var steps = preload("res://assets/sfx/steps.ogg")
 #cursors
 var hand_cursor = preload("res://assets/cursors/hand_knock.png")
 var arrow_cursor = preload("res://assets/cursors/hand_normal.png")
@@ -55,16 +57,35 @@ func _play_sfx(sfx):
 	$sounds.stream = sfx
 	$sounds.play()
 
+# intro -----------
+	
+func _on_start_button_pressed():
+	_play_sfx(snap)
+	$prophecy_stages.current_tab = 1
+	if not get_node(nodes_paths[6]).is_stopped():
+		get_node(nodes_paths[6]).stop()
+	
+func _on_start_button_mouse_entered():
+	print("test")
+	get_node(nodes_paths[6]).start()
 
-	#stage 0 ----------
+func _on_start_button_mouse_exited():
+	get_node(nodes_paths[6]).stop()
+	$prophecy_stages/intro/TextureRect.visible = true
+
+func _on_flash_timer_timeout():
+	$prophecy_stages/intro/TextureRect.visible = !$prophecy_stages/intro/TextureRect.visible
+
+# ----------- intro
+
+#doorstep ----------
 
 func _on_knock_button_pressed():
 	var button = get_node(nodes_paths[4])
-	if knock_knock == 3:
+	if knock_knock == 1:
 		knock_knock = 0
 		$prophecy_stages.current_tab = 2
-		_play_sfx(prophecy_calculating)
-		get_node(nodes_paths[1]).start()
+		_play_sfx(steps)
 		
 	else:
 		get_node(nodes_paths[3]).value = 100
@@ -81,54 +102,62 @@ func _on_knock_timer_timeout():
 	else:
 		get_node(nodes_paths[4]).disabled = false
 		get_node(nodes_paths[2]).stop()
-		if knock_knock == 3:
+		if knock_knock == 1:
 			get_node(nodes_paths[4]).text = "enter"
 			knock_bar.self_modulate = Color(1,1,1,0)
-			_play_sfx(prophecy_calculating)
 
 func _print_reaction():
 	reactions_array.shuffle()
 	get_node(nodes_paths[5]).text = reactions_array.front()
-	reactions_array.pop_front()
+#	reactions_array.pop_front()
 
-#---------- stage 0
+#---------- doorstep
 
+# room ---------
+func _on_ask_button_pressed():
+	$prophecy_stages.current_tab = 3
+	get_node(nodes_paths[1]).start()
+	_play_sfx(snap)
+# -------- room
 
-#stage 1 ----------
+#reading ----------
 
 func _on_prophecy_timer_timeout():
 	random_pics.shuffle()
 	var prophecy_bar = get_node(nodes_paths[0])
 	var pic_selected = random_pics.front()
 	if prophecy_bar.value >= 100:
-		_prophecy_complete()
+		prophecy_bar.value = 0
+		get_node(nodes_paths[1]).stop()
+		_play_sfx(prophecy_finished)
+		$prophecy_stages.current_tab = 4
+		_select_prophecy()
 	else:
-		prophecy_bar.value += 1
+		prophecy_bar.value += 10
 	$prophecy_stages/reading/TextureRect.texture = pic_selected
-	
-func _prophecy_complete():
-	_play_sfx(prophecy_finished)
-	get_node(nodes_paths[1]).stop()
-	$prophecy_stages.current_tab = 4
-	_select_prophecy()
 
-#---------- stage 1
+	
+
+#---------- reading
 
 
 #stage 2 ----------
 
 func _select_prophecy():
-		var random = randi_range(1,2)
-		var method = var_to_str(random)
-		match method:
-			"1":
-				$prophecy_stages/prophecy/Label.text = _prophecy_word()
-			"2":
-				$prophecy_stages/prophecy/Label.text = _prophecy_or()
-			"3":
-				_prophecy_sentence()
-			_:
-				print("no prophecy for you")
+	var random = randi_range(1,2)
+	var method = var_to_str(random)
+	if words_array.size() <= 5:
+		print("repopulating")
+		_load_file_list("res://assets/texts/words.txt", words_array)
+	match method:
+		"1":
+			$prophecy_stages/prophecy/Label.text = _prophecy_word()
+		"2":
+			$prophecy_stages/prophecy/Label.text = _prophecy_or()
+		"3":
+			_prophecy_sentence()
+		_:
+			print("no prophecy for you")
 
 func _prophecy_word():
 	print("word")
@@ -209,7 +238,9 @@ func _on_button_pressed():
 	
 
 
-func _on_start_button_pressed():
-	_play_sfx(snap)
-	$prophecy_stages.current_tab = 1
-	
+
+
+
+
+
+
