@@ -9,7 +9,7 @@ var knock_knock = 0
 var knock_sound = preload("res://assets/sfx/knock_knock.wav")
 var prophecy_calculating = preload("res://assets/sfx/laugh_01.wav")
 var prophecy_finished = preload("res://assets/sfx/1054.wav")
-
+var snap = preload("res://assets/sfx/snap.wav")
 #cursors
 var hand_cursor = preload("res://assets/cursors/hand_knock.png")
 var arrow_cursor = preload("res://assets/cursors/hand_normal.png")
@@ -62,7 +62,7 @@ func _on_knock_button_pressed():
 	var button = get_node(nodes_paths[4])
 	if knock_knock == 3:
 		knock_knock = 0
-		$prophecy_stages.current_tab = 1
+		$prophecy_stages.current_tab = 2
 		_play_sfx(prophecy_calculating)
 		get_node(nodes_paths[1]).start()
 		
@@ -104,12 +104,12 @@ func _on_prophecy_timer_timeout():
 		_prophecy_complete()
 	else:
 		prophecy_bar.value += 1
-	$prophecy_stages/encounter/TextureRect.texture = pic_selected
+	$prophecy_stages/reading/TextureRect.texture = pic_selected
 	
 func _prophecy_complete():
 	_play_sfx(prophecy_finished)
 	get_node(nodes_paths[1]).stop()
-	$prophecy_stages.current_tab = 2
+	$prophecy_stages.current_tab = 4
 	_select_prophecy()
 
 #---------- stage 1
@@ -118,17 +118,17 @@ func _prophecy_complete():
 #stage 2 ----------
 
 func _select_prophecy():
-	var random = randi_range(1,2)
-	var method = var_to_str(random)
-	match method:
-		"1":
-			$prophecy_stages/prophecy/Label.text = _prophecy_word()
-		"2":
-			$prophecy_stages/prophecy/Label.text = _prophecy_or()
-		"3":
-			_prophecy_sentence()
-		_:
-			print("no prophecy for you")
+		var random = randi_range(1,2)
+		var method = var_to_str(random)
+		match method:
+			"1":
+				$prophecy_stages/prophecy/Label.text = _prophecy_word()
+			"2":
+				$prophecy_stages/prophecy/Label.text = _prophecy_or()
+			"3":
+				_prophecy_sentence()
+			_:
+				print("no prophecy for you")
 
 func _prophecy_word():
 	print("word")
@@ -200,6 +200,16 @@ func _prophecy_sentence():
 
 
 func _on_button_pressed():
-	$prophecy_stages.current_tab = 2
+	_play_sfx(snap)
+	$prophecy_stages.current_tab = 4
+	if words_array.size() <= 5:
+		print("repopulating")
+		_load_file_list("res://assets/texts/words.txt", words_array)
 	_select_prophecy()
+	
+
+
+func _on_start_button_pressed():
+	_play_sfx(snap)
+	$prophecy_stages.current_tab = 1
 	

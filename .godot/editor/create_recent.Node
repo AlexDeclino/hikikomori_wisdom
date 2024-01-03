@@ -1,6 +1,7 @@
-Button
 Label
+Button
 TextureRect
+MarginContainer
 Timer
 ProgressBar
 Panel
@@ -9,5 +10,4 @@ Polygon2D
 VBoxContainer
 AnimationPlayer
 AudioStreamPlayer
-MarginContainer
 TabContainer
