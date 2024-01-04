@@ -32,7 +32,7 @@ var preword_array = []
 func _ready():
 	Input.set_custom_mouse_cursor(arrow_cursor, Input.CURSOR_ARROW, Vector2(20,20))
 	Input.set_custom_mouse_cursor(hand_cursor, Input.CURSOR_POINTING_HAND, Vector2(24,24))
-	$AnimationPlayer.play("intro_fade-in")
+#	$AnimationPlayer.play("intro_fade-in")
 	
 	#load all words lists into arrays
 	_load_file_list("res://assets/texts/reactions.txt", reactions_array)
@@ -243,3 +243,7 @@ func _on_button_pressed():
 
 
 
+
+
+func _on_quit_button_pressed():
+	get_tree().quit()
