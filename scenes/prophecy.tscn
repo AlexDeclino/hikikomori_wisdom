@@ -1,11 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://62kem80pm0aa"]
+[gd_scene load_steps=13 format=3 uid="uid://62kem80pm0aa"]
 
 [ext_resource type="Script" path="res://scripts/prophecy.gd" id="1_fth8o"]
 [ext_resource type="Texture2D" uid="uid://cshy3hxl3cgbn" path="res://assets/door_01.jpg" id="2_gwday"]
 [ext_resource type="Texture2D" uid="uid://bd8h7c0ekdpfn" path="res://assets/background_01.png" id="2_n7pln"]
 [ext_resource type="AudioStream" uid="uid://cchwfbqae2hge" path="res://assets/sfx/foreboding-theme.ogg" id="2_r8h2h"]
+[ext_resource type="Theme" uid="uid://df8afv8n0tqb0" path="res://themes/main_theme.tres" id="3_o8pwq"]
 [ext_resource type="FontFile" uid="uid://nd0s6xgshou2" path="res://assets/Godot_rough-Regular.ttf" id="4_76wjn"]
 [ext_resource type="Texture2D" uid="uid://tf6blr8fx6qs" path="res://assets/intro_bg.png" id="4_pxr1f"]
+[ext_resource type="Texture2D" uid="uid://dno1ynfk2pmrp" path="res://_tests/nineRectTest.png" id="8_l2lh1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs1hu"]
 bg_color = Color(0, 0, 0, 1)
@@ -80,7 +82,12 @@ grow_vertical = 2
 tabs_visible = false
 
 [node name="intro" type="MarginContainer" parent="prophecy_stages"]
+visible = false
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="TextureRect" type="TextureRect" parent="prophecy_stages/intro"]
 layout_mode = 2
@@ -89,8 +96,8 @@ expand_mode = 1
 
 [node name="start_button" type="Button" parent="prophecy_stages/intro" groups=["buttons"]]
 layout_mode = 2
-size_flags_horizontal = 8
 size_flags_vertical = 8
+theme = ExtResource("3_o8pwq")
 text = "START"
 
 [node name="flash_timer" type="Timer" parent="prophecy_stages/intro"]
@@ -104,6 +111,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+theme = ExtResource("3_o8pwq")
 text = "knock"
 
 [node name="knock_timer" type="Timer" parent="prophecy_stages/doorstep"]
@@ -138,7 +146,6 @@ size_flags_vertical = 8
 show_percentage = false
 
 [node name="room" type="MarginContainer" parent="prophecy_stages"]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="prophecy_stages/room"]
@@ -164,6 +171,7 @@ expand_mode = 1
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+theme = ExtResource("3_o8pwq")
 text = "ask the sybilla"
 
 [node name="reading" type="MarginContainer" parent="prophecy_stages"]
@@ -221,12 +229,14 @@ autowrap_mode = 2
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+theme = ExtResource("3_o8pwq")
 text = "replay"
 
 [node name="restart_button" type="Button" parent="prophecy_stages/prophecy"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
+theme = ExtResource("3_o8pwq")
 text = "restart"
 
 [node name="sounds" type="AudioStreamPlayer" parent="."]
@@ -246,12 +256,32 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -103.0
-offset_bottom = 31.0
+offset_left = -126.0
+offset_bottom = 54.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
+theme = ExtResource("3_o8pwq")
 text = "quick replay"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -378.0
+offset_bottom = -449.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_l2lh1")
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 16
+patch_margin_bottom = 15
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [connection signal="mouse_entered" from="prophecy_stages/intro/start_button" to="." method="_on_start_button_mouse_entered"]
 [connection signal="mouse_exited" from="prophecy_stages/intro/start_button" to="." method="_on_start_button_mouse_exited"]
