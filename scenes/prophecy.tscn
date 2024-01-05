@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://62kem80pm0aa"]
+[gd_scene load_steps=12 format=3 uid="uid://62kem80pm0aa"]
 
 [ext_resource type="Script" path="res://scripts/prophecy.gd" id="1_fth8o"]
-[ext_resource type="Texture2D" uid="uid://74yrnw0qe6gr" path="res://assets/button_normal_01.png" id="2_0svoa"]
 [ext_resource type="Texture2D" uid="uid://cshy3hxl3cgbn" path="res://assets/door_01.jpg" id="2_gwday"]
 [ext_resource type="Texture2D" uid="uid://bd8h7c0ekdpfn" path="res://assets/background_01.png" id="2_n7pln"]
 [ext_resource type="AudioStream" uid="uid://cchwfbqae2hge" path="res://assets/sfx/foreboding-theme.ogg" id="2_r8h2h"]
+[ext_resource type="Texture2D" uid="uid://bpdsrc3nyuop4" path="res://assets/panel_bg_01.png" id="3_6wf5i"]
 [ext_resource type="Theme" uid="uid://df8afv8n0tqb0" path="res://themes/main_theme.tres" id="3_o8pwq"]
 [ext_resource type="FontFile" uid="uid://nd0s6xgshou2" path="res://assets/Godot_rough-Regular.ttf" id="4_76wjn"]
 [ext_resource type="Texture2D" uid="uid://mmvabtjjs5s1" path="res://assets/dialogue_B_01.png" id="4_4780g"]
 [ext_resource type="Texture2D" uid="uid://tf6blr8fx6qs" path="res://assets/intro_bg.png" id="4_pxr1f"]
+[ext_resource type="Texture2D" uid="uid://dllqsjlrk8as" path="res://assets/button_hover_01.png" id="8_4gqka"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs1hu"]
 bg_color = Color(0, 0, 0, 1)
@@ -34,58 +35,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_cs1hu")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="top2" type="HBoxContainer" parent="MarginContainer"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = -1
-
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/top2"]
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("2_0svoa")
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-
-[node name="NinePatchRect2" type="NinePatchRect" parent="MarginContainer/top2"]
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("2_0svoa")
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-
-[node name="NinePatchRect3" type="NinePatchRect" parent="MarginContainer/top2"]
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("2_0svoa")
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-
 [node name="prophecy_stages" type="TabContainer" parent="."]
+custom_minimum_size = Vector2(288, 288)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,55 +48,19 @@ tabs_visible = false
 
 [node name="intro" type="MarginContainer" parent="prophecy_stages"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 122
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_right = 122
 theme_override_constants/margin_bottom = 10
 
 [node name="flash_timer" type="Timer" parent="prophecy_stages/intro"]
 wait_time = 0.05
 
-[node name="UI" type="VBoxContainer" parent="prophecy_stages/intro"]
+[node name="NinePatchRect" type="NinePatchRect" parent="prophecy_stages/intro"]
 layout_mode = 2
-
-[node name="top" type="HBoxContainer" parent="prophecy_stages/intro/UI"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = -1
-
-[node name="NinePatchRect" type="NinePatchRect" parent="prophecy_stages/intro/UI"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("4_4780g")
-patch_margin_left = 7
-patch_margin_top = 7
-patch_margin_right = 8
-patch_margin_bottom = 7
+texture = ExtResource("3_6wf5i")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
-
-[node name="bottom" type="HBoxContainer" parent="prophecy_stages/intro/UI"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-
-[node name="quit_button" type="Button" parent="prophecy_stages/intro/UI/bottom" groups=["buttons"]]
-layout_mode = 2
-size_flags_horizontal = 0
-theme = ExtResource("3_o8pwq")
-text = "QUIT"
-
-[node name="start_button" type="Button" parent="prophecy_stages/intro/UI/bottom" groups=["buttons"]]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("3_o8pwq")
-text = "START"
-
-[node name="quit_button2" type="Button" parent="prophecy_stages/intro/UI/bottom" groups=["buttons"]]
-layout_mode = 2
-size_flags_horizontal = 8
-theme = ExtResource("3_o8pwq")
-text = "QUIT"
 
 [node name="TextureRect" type="TextureRect" parent="prophecy_stages/intro"]
 visible = false
@@ -157,6 +72,10 @@ expand_mode = 1
 [node name="doorstep" type="MarginContainer" parent="prophecy_stages"]
 visible = false
 layout_mode = 2
+theme_override_constants/margin_left = 122
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 122
+theme_override_constants/margin_bottom = 10
 
 [node name="knock_button" type="Button" parent="prophecy_stages/doorstep" groups=["buttons"]]
 layout_mode = 2
@@ -182,7 +101,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="prophecy_stages/doorstep/VBoxContainer"]
-custom_minimum_size = Vector2(256, 256)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -199,6 +118,10 @@ show_percentage = false
 [node name="room" type="MarginContainer" parent="prophecy_stages"]
 visible = false
 layout_mode = 2
+theme_override_constants/margin_left = 122
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 122
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="prophecy_stages/room"]
 layout_mode = 2
@@ -229,6 +152,10 @@ text = "ask the sybilla"
 [node name="reading" type="MarginContainer" parent="prophecy_stages"]
 visible = false
 layout_mode = 2
+theme_override_constants/margin_left = 122
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 122
+theme_override_constants/margin_bottom = 10
 
 [node name="TextureRect" type="TextureRect" parent="prophecy_stages/reading"]
 custom_minimum_size = Vector2(256, 256)
@@ -259,9 +186,16 @@ wait_time = 0.05
 [node name="prophecy" type="MarginContainer" parent="prophecy_stages"]
 visible = false
 layout_mode = 2
+theme_override_constants/margin_left = 122
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 122
+theme_override_constants/margin_bottom = 10
 
 [node name="ColorRect" type="ColorRect" parent="prophecy_stages/prophecy"]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 color = Color(0, 1, 0, 1)
 
 [node name="Label" type="Label" parent="prophecy_stages/prophecy"]
@@ -291,6 +225,130 @@ size_flags_vertical = 8
 theme = ExtResource("3_o8pwq")
 text = "restart"
 
+[node name="top_bar" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(256, 52)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 0
+
+[node name="ColorRect" type="ColorRect" parent="top_bar"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="top_bar"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="top_bar/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="stats_bar" type="HBoxContainer" parent="top_bar/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 21)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = -2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="top_bar/MarginContainer/VBoxContainer/stats_bar"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("8_4gqka")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="top_bar/MarginContainer/VBoxContainer/stats_bar"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("8_4gqka")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="top_bar/MarginContainer/VBoxContainer/stats_bar"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("8_4gqka")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="buttons_bar" type="HBoxContainer" parent="top_bar/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 21)
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="quit_button" type="Button" parent="top_bar/MarginContainer/VBoxContainer/buttons_bar" groups=["buttons"]]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("3_o8pwq")
+text = "QUIT"
+
+[node name="start_button" type="Button" parent="top_bar/MarginContainer/VBoxContainer/buttons_bar" groups=["buttons"]]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_o8pwq")
+text = "START"
+
+[node name="quit_button2" type="Button" parent="top_bar/MarginContainer/VBoxContainer/buttons_bar" groups=["buttons"]]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("3_o8pwq")
+text = "QUIT"
+
+[node name="dialogue_bar" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -70.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 62
+theme_override_constants/margin_right = 62
+theme_override_constants/margin_bottom = 15
+
+[node name="ColorRect" type="NinePatchRect" parent="dialogue_bar"]
+layout_mode = 2
+texture = ExtResource("4_4780g")
+patch_margin_left = 7
+patch_margin_right = 7
+patch_margin_bottom = 9
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="dialogue_bar"]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="dialogue_bar/MarginContainer"]
+layout_mode = 2
+text = "skdjfhskdfhdskfhsdkjfh"
+
 [node name="sounds" type="AudioStreamPlayer" parent="."]
 
 [node name="ost" type="AudioStreamPlayer" parent="."]
@@ -311,19 +369,19 @@ theme = ExtResource("3_o8pwq")
 text = "QR"
 
 [connection signal="timeout" from="prophecy_stages/intro/flash_timer" to="." method="_on_flash_timer_timeout"]
-[connection signal="mouse_entered" from="prophecy_stages/intro/UI/bottom/quit_button" to="." method="_on_start_button_mouse_entered"]
-[connection signal="mouse_exited" from="prophecy_stages/intro/UI/bottom/quit_button" to="." method="_on_start_button_mouse_exited"]
-[connection signal="pressed" from="prophecy_stages/intro/UI/bottom/quit_button" to="." method="_on_quit_button_pressed"]
-[connection signal="mouse_entered" from="prophecy_stages/intro/UI/bottom/start_button" to="." method="_on_start_button_mouse_entered"]
-[connection signal="mouse_exited" from="prophecy_stages/intro/UI/bottom/start_button" to="." method="_on_start_button_mouse_exited"]
-[connection signal="pressed" from="prophecy_stages/intro/UI/bottom/start_button" to="." method="_on_start_button_pressed"]
-[connection signal="mouse_entered" from="prophecy_stages/intro/UI/bottom/quit_button2" to="." method="_on_start_button_mouse_entered"]
-[connection signal="mouse_exited" from="prophecy_stages/intro/UI/bottom/quit_button2" to="." method="_on_start_button_mouse_exited"]
-[connection signal="pressed" from="prophecy_stages/intro/UI/bottom/quit_button2" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="prophecy_stages/doorstep/knock_button" to="." method="_on_knock_button_pressed"]
 [connection signal="timeout" from="prophecy_stages/doorstep/knock_timer" to="." method="_on_knock_timer_timeout"]
 [connection signal="pressed" from="prophecy_stages/room/ask_button" to="." method="_on_ask_button_pressed"]
 [connection signal="timeout" from="prophecy_stages/reading/VBoxContainer/prophecy_bar/prophecy_timer" to="." method="_on_prophecy_timer_timeout"]
 [connection signal="pressed" from="prophecy_stages/prophecy/replay_button" to="." method="_on_ask_button_pressed"]
 [connection signal="pressed" from="prophecy_stages/prophecy/restart_button" to="." method="_on_restart_button_pressed"]
+[connection signal="mouse_entered" from="top_bar/MarginContainer/VBoxContainer/buttons_bar/quit_button" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="top_bar/MarginContainer/VBoxContainer/buttons_bar/quit_button" to="." method="_on_start_button_mouse_exited"]
+[connection signal="pressed" from="top_bar/MarginContainer/VBoxContainer/buttons_bar/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="mouse_entered" from="top_bar/MarginContainer/VBoxContainer/buttons_bar/start_button" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="top_bar/MarginContainer/VBoxContainer/buttons_bar/start_button" to="." method="_on_start_button_mouse_exited"]
+[connection signal="pressed" from="top_bar/MarginContainer/VBoxContainer/buttons_bar/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="top_bar/MarginContainer/VBoxContainer/buttons_bar/quit_button2" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="top_bar/MarginContainer/VBoxContainer/buttons_bar/quit_button2" to="." method="_on_start_button_mouse_exited"]
+[connection signal="pressed" from="top_bar/MarginContainer/VBoxContainer/buttons_bar/quit_button2" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="replay_button" to="." method="_on_button_pressed"]
