@@ -1,13 +1,13 @@
-Button
 Label
-RichTextLabel
 MarginContainer
+TextureRect
+HBoxContainer
+RichTextLabel
 NinePatchRect
 ColorRect
-HBoxContainer
+Button
 Panel
 VBoxContainer
-TextureRect
 AnimationPlayer
 Timer
 ProgressBar

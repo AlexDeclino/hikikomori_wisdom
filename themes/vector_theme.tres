@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://4xcwaohv4fjg"]
+
+[ext_resource type="FontFile" uid="uid://2272psfcrp2j" path="res://assets/fonts/Crimson_Text/CrimsonText-Regular.ttf" id="1_a5uby"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ff2r3"]
+bg_color = Color(1, 1, 0, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1osq4"]
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 40
+Button/fonts/font = ExtResource("1_a5uby")
+Button/styles/hover = null
+Button/styles/normal = SubResource("StyleBoxFlat_ff2r3")
+Label/font_sizes/font_size = 40
+Label/fonts/font = ExtResource("1_a5uby")
+TabContainer/styles/panel = SubResource("StyleBoxEmpty_1osq4")
