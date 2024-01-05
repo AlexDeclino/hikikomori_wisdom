@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://62kem80pm0aa"]
+[gd_scene load_steps=12 format=3 uid="uid://62kem80pm0aa"]
 
 [ext_resource type="Script" path="res://scripts/prophecy.gd" id="1_fth8o"]
 [ext_resource type="Texture2D" uid="uid://cshy3hxl3cgbn" path="res://assets/door_01.jpg" id="2_gwday"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cchwfbqae2hge" path="res://assets/sfx/foreboding-theme.ogg" id="2_r8h2h"]
 [ext_resource type="Texture2D" uid="uid://bpdsrc3nyuop4" path="res://assets/panel_bg_01.png" id="3_6wf5i"]
 [ext_resource type="Theme" uid="uid://df8afv8n0tqb0" path="res://themes/main_theme.tres" id="3_o8pwq"]
+[ext_resource type="FontFile" uid="uid://nd0s6xgshou2" path="res://assets/Godot_rough-Regular.ttf" id="4_76wjn"]
 [ext_resource type="Texture2D" uid="uid://mmvabtjjs5s1" path="res://assets/dialogue_B_01.png" id="4_4780g"]
 [ext_resource type="Texture2D" uid="uid://tf6blr8fx6qs" path="res://assets/intro_bg.png" id="4_pxr1f"]
 [ext_resource type="Texture2D" uid="uid://dllqsjlrk8as" path="res://assets/button_hover_01.png" id="8_4gqka"]
@@ -194,7 +195,7 @@ theme_override_constants/margin_right = 122
 theme_override_constants/margin_bottom = 10
 
 [node name="ColorRect" type="ColorRect" parent="prophecy_stages/prophecy"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(800, 800)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -203,16 +204,15 @@ color = Color(0.894118, 0.803922, 0.8, 1)
 [node name="Label" type="Label" parent="prophecy_stages/prophecy/ColorRect"]
 clip_contents = true
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -17.5
-offset_bottom = 17.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_76wjn")
+theme_override_font_sizes/font_size = 36
 text = "aaaa"
 horizontal_alignment = 1
 vertical_alignment = 1
