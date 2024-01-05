@@ -9,4 +9,5 @@
 Button/font_sizes/font_size = 8
 Button/styles/hover = ExtResource("1_7sugu")
 Button/styles/normal = ExtResource("2_5drcp")
+Label/font_sizes/font_size = 13
 TabContainer/styles/panel = SubResource("StyleBoxEmpty_1osq4")

@@ -1,6 +1,7 @@
 extends Control
 
 @export var nodes_paths:Array[NodePath]
+@export var stats_paths:Dictionary
 @export var knock_speed:float
 @export var prophechy_speed:int
 
@@ -28,6 +29,10 @@ var reactions_array = []
 var words_array = []
 var preword_array = []
 
+#stats var
+var money = 0
+var rest = 300
+var daytime = 0
 
 func _ready():
 	Input.set_custom_mouse_cursor(arrow_cursor, Input.CURSOR_ARROW, Vector2(20,20))
@@ -58,11 +63,49 @@ func _play_sfx(sfx):
 	$sounds.stream = sfx
 	$sounds.play()
 
+func _on_quit_button_pressed():
+	get_tree().quit()
+
 # intro -----------
+
+
+
+func _on_money_button_pressed():
+	_calculate_money(randi_range(1,8))
+	_calculate_rest(-7)
+	_calculate_daytime(1)
+	
+
+func _calculate_money(x):
+	money += x
+	get_node(stats_paths["money_label"]).text = var_to_str(money) + " $"
+	
+func _calculate_rest(x):
+	rest += x
+	if rest >= 70 and rest <= 100:
+		$top_bar/MarginContainer/VBoxContainer/stats_bar/rest_bar/MarginContainer/rest_Label.text = "rested"
+	elif rest >= 30 and rest < 70:
+		$top_bar/MarginContainer/VBoxContainer/stats_bar/rest_bar/MarginContainer/rest_Label.text = "tired"
+	elif rest >= 0 and rest < 30:
+		$top_bar/MarginContainer/VBoxContainer/stats_bar/rest_bar/MarginContainer/rest_Label.text = "dead"		
+		$top_bar/MarginContainer/VBoxContainer/buttons_bar/money_button.disabled = true
+	else:
+		print("wtf")
+
+func _calculate_daytime(x):
+	daytime += x
+	if daytime <= 12:
+		$top_bar/MarginContainer/VBoxContainer/stats_bar/time_bar/MarginContainer/time_Label.text = "morning" 
+	elif daytime > 12 and daytime <= 18:
+		$top_bar/MarginContainer/VBoxContainer/stats_bar/time_bar/MarginContainer/time_Label.text = "afternoon" 
+	elif daytime > 18 and daytime <= 24:
+		$top_bar/MarginContainer/VBoxContainer/stats_bar/time_bar/MarginContainer/time_Label.text = "night" 
+	else:
+		daytime = 0	
 	
 func _on_start_button_pressed():
 	_play_sfx(snap)
-	$prophecy_stages.current_tab = 1
+	$prophecy_stages.current_tab += 1
 	if not get_node(nodes_paths[6]).is_stopped():
 		get_node(nodes_paths[6]).stop()
 	
@@ -151,9 +194,9 @@ func _select_prophecy():
 		_load_file_list("res://assets/texts/words.txt", words_array)
 	match method:
 		"1":
-			$prophecy_stages/prophecy/Label.text = _prophecy_word()
+			$prophecy_stages/prophecy/ColorRect/Label.text = _prophecy_word()
 		"2":
-			$prophecy_stages/prophecy/Label.text = _prophecy_or()
+			$prophecy_stages/prophecy/ColorRect/Label.text = _prophecy_or()
 		"3":
 			_prophecy_sentence()
 		_:
@@ -245,5 +288,4 @@ func _on_button_pressed():
 
 
 
-func _on_quit_button_pressed():
-	get_tree().quit()
+
