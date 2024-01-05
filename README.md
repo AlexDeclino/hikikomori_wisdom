@@ -1,2 +1,3 @@
 # hikikomori_wisdom
  
+akjsdhaksjdhakshd
