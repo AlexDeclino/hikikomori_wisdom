@@ -449,7 +449,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="RichTextLabel" type="RichTextLabel" parent="dialogue_bar/MarginContainer"]
 layout_mode = 2
-text = "skdjfhskdfhdskfhsdkjfh"
+text = "skdjfhskdfhdskfhsdkjfha"
 
 [node name="sounds" type="AudioStreamPlayer" parent="."]
 
