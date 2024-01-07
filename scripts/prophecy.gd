@@ -73,8 +73,8 @@ func _play_sfx(sfx):
 func _on_quit_button_pressed():
 	get_tree().quit()
 
-func _change_dialogue(x):
-	get_node(nodes_paths["dialogue_label"]).text = dialogues_array[x]
+func _change_dialogue(text:String):
+	get_node(nodes_paths["dialogue_label"]).text = text
 
 # intro -----------
 
@@ -82,7 +82,7 @@ func _change_dialogue(x):
 func _on_start_button_pressed():
 	_play_sfx(snap)
 	$prophecy_stages.current_tab += 1
-	_change_dialogue(1)
+	_change_dialogue("in front of the doorstep")
 	#this stops flash timer just in case
 	if not get_node(nodes_paths["flash_timer"]).is_stopped():
 		get_node(nodes_paths["flash_timer"]).stop()
@@ -132,13 +132,13 @@ func _on_knock_button_pressed():
 		knock_knock = 0
 		$prophecy_stages.current_tab = 2
 		button.text = "knock"
-		_change_dialogue(3)
+		_change_dialogue("entering")
 	elif knock_knock == 0:
-		_change_dialogue(4)
+		_change_dialogue("no answer")
 		_play_sfx(knock_sound)
 		knock_knock += 1
 	else:
-		_change_dialogue(2)
+		_change_dialogue("you can hear some heavy footsteps approaching")
 		button.disabled = true
 		$AnimationPlayer.play("door_opening")
 		await $AnimationPlayer.animation_finished

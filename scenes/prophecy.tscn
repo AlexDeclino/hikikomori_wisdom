@@ -99,6 +99,7 @@ theme = ExtResource("3_o8pwq")
 tabs_visible = false
 
 [node name="intro" type="MarginContainer" parent="prophecy_stages"]
+visible = false
 layout_mode = 2
 
 [node name="HFlowContainer" type="HFlowContainer" parent="prophecy_stages/intro"]
@@ -505,7 +506,6 @@ theme = ExtResource("9_s6h11")
 text = ">"
 
 [node name="room" type="MarginContainer" parent="prophecy_stages"]
-visible = false
 layout_mode = 2
 
 [node name="top_bar" type="MarginContainer" parent="prophecy_stages/room"]
