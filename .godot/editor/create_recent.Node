@@ -1,3 +1,4 @@
+AnimationPlayer
 Label
 HFlowContainer
 MarginContainer
@@ -9,7 +10,6 @@ ColorRect
 Button
 Panel
 VBoxContainer
-AnimationPlayer
 Timer
 ProgressBar
 Polygon2D

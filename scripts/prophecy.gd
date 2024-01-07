@@ -1,8 +1,6 @@
 extends Control
 
-@export var nodes_paths:Array[NodePath]
-@export var stats_paths:Dictionary
-@export var knock_speed:float
+@export var nodes_paths:Dictionary
 @export var prophechy_speed:int
 
 var knock_knock = 0
@@ -25,9 +23,10 @@ var random_pics = [
 	]
 
 #lists
-var reactions_array = []
 var words_array = []
 var preword_array = []
+var dialogues_array = []
+var questions_array = []
 
 #stats var
 var money = 0
@@ -36,16 +35,19 @@ var daytime = 0
 
 #hikikomori labels
 @onready var labels:Array = $prophecy_stages/intro/HFlowContainer.get_children()
+var is_question = false
 
 func _ready():
+	
 	Input.set_custom_mouse_cursor(arrow_cursor, Input.CURSOR_ARROW, Vector2(20,20))
 	Input.set_custom_mouse_cursor(hand_cursor, Input.CURSOR_POINTING_HAND, Vector2(24,24))
 #	$AnimationPlayer.play("intro_fade-in")
 	
 	#load all words lists into arrays
-	_load_file_list("res://assets/texts/reactions.txt", reactions_array)
 	_load_file_list("res://assets/texts/words.txt", words_array)
 	_load_file_list("res://assets/texts/pre_words.txt", preword_array)
+	_load_file_list("res://assets/texts/dialogues.txt", dialogues_array)
+	_load_file_list("res://assets/texts/questions.txt", questions_array)
 	
 
 	#apply settings for cursor and focus to all buttons
@@ -71,114 +73,85 @@ func _play_sfx(sfx):
 func _on_quit_button_pressed():
 	get_tree().quit()
 
+func _change_dialogue(x):
+	get_node(nodes_paths["dialogue_label"]).text = dialogues_array[x]
+
 # intro -----------
 
-
-
-func _on_money_button_pressed():
-	_calculate_money(randi_range(1,8))
-	_calculate_rest(-7)
-	_calculate_daytime(1)
-	
-
-func _calculate_money(x):
-	money += x
-	get_node(stats_paths["money_label"]).text = var_to_str(money) + " $"
-	
-func _calculate_rest(x):
-	rest += x
-	if rest >= 70 and rest <= 100:
-		$top_bar/MarginContainer/VBoxContainer/stats_bar/rest_bar/MarginContainer/rest_Label.text = "rested"
-	elif rest >= 30 and rest < 70:
-		$top_bar/MarginContainer/VBoxContainer/stats_bar/rest_bar/MarginContainer/rest_Label.text = "tired"
-	elif rest >= 0 and rest < 30:
-		$top_bar/MarginContainer/VBoxContainer/stats_bar/rest_bar/MarginContainer/rest_Label.text = "dead"		
-		$top_bar/MarginContainer/VBoxContainer/buttons_bar/money_button.disabled = true
-	else:
-		print("wtf")
-
-func _calculate_daytime(x):
-	daytime += x
-	if daytime <= 12:
-		$top_bar/MarginContainer/VBoxContainer/stats_bar/time_bar/MarginContainer/time_Label.text = "morning" 
-	elif daytime > 12 and daytime <= 18:
-		$top_bar/MarginContainer/VBoxContainer/stats_bar/time_bar/MarginContainer/time_Label.text = "afternoon" 
-	elif daytime > 18 and daytime <= 24:
-		$top_bar/MarginContainer/VBoxContainer/stats_bar/time_bar/MarginContainer/time_Label.text = "night" 
-	else:
-		daytime = 0	
 	
 func _on_start_button_pressed():
 	_play_sfx(snap)
 	$prophecy_stages.current_tab += 1
-	if not get_node(nodes_paths[6]).is_stopped():
-		get_node(nodes_paths[6]).stop()
+	_change_dialogue(1)
+	#this stops flash timer just in case
+	if not get_node(nodes_paths["flash_timer"]).is_stopped():
+		get_node(nodes_paths["flash_timer"]).stop()
 	
 func _on_start_button_mouse_entered():
-	print("test")
-	get_node(nodes_paths[6]).start()
-
-func _on_start_button_mouse_exited():
-	get_node(nodes_paths[6]).stop()
-	$prophecy_stages/intro/HFlowContainer.visible = true
-	_turn_off_labels()
-
-func _turn_off_labels():
+	get_node(nodes_paths["flash_timer"]).start()
+	is_question = true
 	for i in labels:
-		if i == $prophecy_stages/intro/HFlowContainer/Label11:
+		if i == labels[10]:
 			i.self_modulate.a = 1
 		else:
 			i.self_modulate.a = 0
 
+func _on_start_button_mouse_exited():
+	_turn_off_labels()
+	is_question = false
+
+func _turn_off_labels():
+	for i in labels:
+		if i == labels[10]:
+			i.self_modulate.a = 1
+		else:
+			i.self_modulate.a = 0
+			i.text = "HIKIKOMORI \n WISDOM"
+
 func _on_flash_timer_timeout():
-#	$prophecy_stages/intro/HFlowContainer.visible = !$prophecy_stages/intro/HFlowContainer.visible
 	var rand_index = randi_range(0,20)
+	if is_question == true and rand_index != 10:
+		labels[rand_index].text = questions_array[randi() % questions_array.size()]
 	if labels[rand_index].self_modulate.a == 1:
 		labels[rand_index].self_modulate.a = 0
 	else:
 		labels[rand_index].self_modulate.a = 1
+		
+	if labels[10].self_modulate.a == 0:
+		labels[10].self_modulate.a = 1
+	else:
+		labels[10].self_modulate.a = 0
+	
 # ----------- intro
 
 #doorstep ----------
 
 func _on_knock_button_pressed():
-	var button = get_node(nodes_paths[4])
-	if knock_knock == 1:
+	var button = get_node(nodes_paths["knock_button"])
+	if knock_knock == 2:
 		knock_knock = 0
 		$prophecy_stages.current_tab = 2
-		_play_sfx(steps)
-		get_node(nodes_paths[4]).text = "enter"
-		
-	else:
-		get_node(nodes_paths[3]).value = 100
+		button.text = "knock"
+		_change_dialogue(3)
+	elif knock_knock == 0:
+		_change_dialogue(4)
 		_play_sfx(knock_sound)
-		button.disabled = true
-		get_node(nodes_paths[2]).start()
 		knock_knock += 1
-		_print_reaction()
-
-func _on_knock_timer_timeout():
-	var knock_bar = get_node(nodes_paths[3])
-	if knock_bar.value > 0:
-		knock_bar.value -= knock_speed
 	else:
-		get_node(nodes_paths[4]).disabled = false
-		get_node(nodes_paths[2]).stop()
-		if knock_knock == 1:
-			get_node(nodes_paths[4]).text = "enter"
-#			knock_bar.self_modulate = Color(1,1,1,0)
-
-func _print_reaction():
-	reactions_array.shuffle()
-	get_node(nodes_paths[7]).text = reactions_array.front()
-#	reactions_array.pop_front()
+		_change_dialogue(2)
+		button.disabled = true
+		$AnimationPlayer.play("door_opening")
+		await $AnimationPlayer.animation_finished
+		button.disabled = false
+		knock_knock += 1
+		button.text = "enter"
 
 #---------- doorstep
 
 # room ---------
 func _on_ask_button_pressed():
 	$prophecy_stages.current_tab = 3
-	get_node(nodes_paths[1]).start()
+	get_node(nodes_paths["prophecy_timer"]).start()
 	_play_sfx(snap)
 # -------- room
 
@@ -186,11 +159,11 @@ func _on_ask_button_pressed():
 
 func _on_prophecy_timer_timeout():
 	random_pics.shuffle()
-	var prophecy_bar = get_node(nodes_paths[0])
+	var prophecy_bar = get_node(nodes_paths["prophecy_bar"])
 	var pic_selected = random_pics.front()
 	if prophecy_bar.value >= 100:
 		prophecy_bar.value = 0
-		get_node(nodes_paths[1]).stop()
+		get_node(nodes_paths["prophecy_timer"]).stop()
 		_play_sfx(prophecy_finished)
 		$prophecy_stages.current_tab = 4
 		_select_prophecy()
