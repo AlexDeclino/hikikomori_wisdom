@@ -1,7 +1,9 @@
-AnimationPlayer
+MenuButton
 Label
-HFlowContainer
 MarginContainer
+MenuBar
+AnimationPlayer
+HFlowContainer
 TextureRect
 HBoxContainer
 RichTextLabel

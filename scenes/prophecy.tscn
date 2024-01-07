@@ -506,6 +506,7 @@ theme = ExtResource("9_s6h11")
 text = ">"
 
 [node name="room" type="MarginContainer" parent="prophecy_stages"]
+visible = false
 layout_mode = 2
 
 [node name="top_bar" type="MarginContainer" parent="prophecy_stages/room"]
@@ -575,7 +576,6 @@ texture = ExtResource("2_n7pln")
 expand_mode = 1
 
 [node name="reading" type="MarginContainer" parent="prophecy_stages"]
-visible = false
 layout_mode = 2
 
 [node name="top_bar" type="MarginContainer" parent="prophecy_stages/reading"]
