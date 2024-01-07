@@ -34,6 +34,9 @@ var money = 0
 var rest = 300
 var daytime = 0
 
+#hikikomori labels
+@onready var labels:Array = $prophecy_stages/intro/HFlowContainer.get_children()
+
 func _ready():
 	Input.set_custom_mouse_cursor(arrow_cursor, Input.CURSOR_ARROW, Vector2(20,20))
 	Input.set_custom_mouse_cursor(hand_cursor, Input.CURSOR_POINTING_HAND, Vector2(24,24))
@@ -50,6 +53,8 @@ func _ready():
 	for i in buttons:
 		i.focus_mode = FOCUS_NONE
 		i.mouse_default_cursor_shape = CURSOR_POINTING_HAND
+		
+	_turn_off_labels()
 
 func _load_file_list(file2open, array2append):
 	var _file = FileAccess.open(file2open, FileAccess.READ)
@@ -115,11 +120,23 @@ func _on_start_button_mouse_entered():
 
 func _on_start_button_mouse_exited():
 	get_node(nodes_paths[6]).stop()
-	$prophecy_stages/intro/TextureRect.visible = true
+	$prophecy_stages/intro/HFlowContainer.visible = true
+	_turn_off_labels()
+
+func _turn_off_labels():
+	for i in labels:
+		if i == $prophecy_stages/intro/HFlowContainer/Label11:
+			i.self_modulate.a = 1
+		else:
+			i.self_modulate.a = 0
 
 func _on_flash_timer_timeout():
-	$prophecy_stages/intro/TextureRect.visible = !$prophecy_stages/intro/TextureRect.visible
-
+#	$prophecy_stages/intro/HFlowContainer.visible = !$prophecy_stages/intro/HFlowContainer.visible
+	var rand_index = randi_range(0,20)
+	if labels[rand_index].self_modulate.a == 1:
+		labels[rand_index].self_modulate.a = 0
+	else:
+		labels[rand_index].self_modulate.a = 1
 # ----------- intro
 
 #doorstep ----------
@@ -153,7 +170,7 @@ func _on_knock_timer_timeout():
 
 func _print_reaction():
 	reactions_array.shuffle()
-	get_node(nodes_paths[5]).text = reactions_array.front()
+	get_node(nodes_paths[7]).text = reactions_array.front()
 #	reactions_array.pop_front()
 
 #---------- doorstep
