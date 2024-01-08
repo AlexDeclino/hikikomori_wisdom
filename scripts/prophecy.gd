@@ -17,9 +17,8 @@ var hand_cursor = preload("res://assets/cursors/hand_knock.png")
 var arrow_cursor = preload("res://assets/cursors/hand_normal.png")
 
 var random_pics = [
-		preload("res://_tests/1.png"),
-		preload("res://_tests/2.png"),
-		preload("res://_tests/3.png")
+		preload("res://assets/prophecies/Mask group-1.png"),
+		preload("res://assets/prophecies/Mask group.png")
 	]
 
 #lists
@@ -38,7 +37,7 @@ var daytime = 0
 var is_question = false
 
 func _ready():
-	
+
 	Input.set_custom_mouse_cursor(arrow_cursor, Input.CURSOR_ARROW, Vector2(20,20))
 	Input.set_custom_mouse_cursor(hand_cursor, Input.CURSOR_POINTING_HAND, Vector2(24,24))
 #	$AnimationPlayer.play("intro_fade-in")
@@ -72,6 +71,10 @@ func _play_sfx(sfx):
 
 func _on_quit_button_pressed():
 	get_tree().quit()
+	
+func _on_question_button_pressed():
+	get_node(nodes_paths["dialogue_label"]).text = "????"
+
 
 func _change_dialogue(text:String):
 	get_node(nodes_paths["dialogue_label"]).text = text
@@ -130,12 +133,17 @@ func _on_knock_button_pressed():
 	var button = get_node(nodes_paths["knock_button"])
 	if knock_knock == 2:
 		knock_knock = 0
-		$prophecy_stages.current_tab = 2
+		$prophecy_stages.current_tab = 3
 		button.text = "knock"
 		_change_dialogue("entering")
+		get_node(nodes_paths["prophecy_timer"]).start()
+		_play_sfx(snap)
 	elif knock_knock == 0:
 		_change_dialogue("no answer")
-		_play_sfx(knock_sound)
+		button.disabled = true
+		$AnimationPlayer.play("knock")
+		await $AnimationPlayer.animation_finished
+		button.disabled = false
 		knock_knock += 1
 	else:
 		_change_dialogue("you can hear some heavy footsteps approaching")
@@ -273,9 +281,4 @@ func _on_button_pressed():
 		_load_file_list("res://assets/texts/words.txt", words_array)
 	_select_prophecy()
 	
-
-
-
-
-
 

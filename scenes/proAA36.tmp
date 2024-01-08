@@ -1,14 +1,13 @@
-[gd_scene load_steps=29 format=3 uid="uid://62kem80pm0aa"]
+[gd_scene load_steps=28 format=3 uid="uid://62kem80pm0aa"]
 
 [ext_resource type="Script" path="res://scripts/prophecy.gd" id="1_fth8o"]
+[ext_resource type="Texture2D" uid="uid://bd8h7c0ekdpfn" path="res://assets/background_01.png" id="2_n7pln"]
 [ext_resource type="AudioStream" uid="uid://cchwfbqae2hge" path="res://assets/sfx/foreboding-theme.ogg" id="2_r8h2h"]
 [ext_resource type="Texture2D" uid="uid://bpdsrc3nyuop4" path="res://assets/panel_bg_01.png" id="3_6wf5i"]
 [ext_resource type="Theme" uid="uid://df8afv8n0tqb0" path="res://themes/main_theme.tres" id="3_o8pwq"]
 [ext_resource type="FontFile" uid="uid://nd0s6xgshou2" path="res://assets/Godot_rough-Regular.ttf" id="4_76wjn"]
 [ext_resource type="Texture2D" uid="uid://bob02bhtcsqi0" path="res://_tests/door1.png" id="5_sxudo"]
 [ext_resource type="Texture2D" uid="uid://cjem35ig84soc" path="res://_tests/room0.png" id="6_lt4i0"]
-[ext_resource type="Texture2D" uid="uid://cnss002uaf3df" path="res://assets/prophecies/Mask group-1.png" id="7_vmii3"]
-[ext_resource type="Texture2D" uid="uid://d0o802qu6b2xq" path="res://assets/prophecies/hands.png" id="8_r7nef"]
 [ext_resource type="Theme" uid="uid://4xcwaohv4fjg" path="res://themes/vector_theme.tres" id="9_s6h11"]
 [ext_resource type="Texture2D" uid="uid://bfstgxw71djlk" path="res://assets/dialogue_bar_01.png" id="10_1351m"]
 [ext_resource type="AudioStream" uid="uid://bkuyi4h34rnkp" path="res://assets/sfx/knock_knock.wav" id="10_i2l6h"]
@@ -24,33 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://bc88q0uankqa3" path="res://assets/q_x/x_h.png" id="21_fix3u"]
 [ext_resource type="Texture2D" uid="uid://35400prqwx4n" path="res://assets/q_x/x_p.png" id="22_dt8fw"]
 [ext_resource type="Texture2D" uid="uid://t6gfoftus7t7" path="res://assets/q_x/x_n.png" id="23_6l5jn"]
-
-[sub_resource type="Animation" id="Animation_t7for"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("prophecy_stages/doorstep/door_rect:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_sxudo")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("dialogue_bar/MarginContainer2/MarginContainer/dialogue_label:text")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["You hear some footsteps approaching"]
-}
 
 [sub_resource type="Animation" id="Animation_tkm2w"]
 resource_name = "door_opening"
@@ -92,15 +64,15 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("dialogue_bar/MarginContainer2/MarginContainer/dialogue_label:text")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 1.2, 1.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": ["welcome", "Let's try again", "You hear some footsteps approaching", "You hear some footsteps approaching"]
+"values": ["You are about to seek some hikikomori wisdom", "Let's try again", "You hear some footsteps approaching"]
 }
 
 [sub_resource type="Animation" id="Animation_b82qn"]
@@ -134,6 +106,33 @@ tracks/1/keys = {
 }
 tracks/1/use_blend = true
 
+[sub_resource type="Animation" id="Animation_t7for"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("prophecy_stages/doorstep/door_rect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_sxudo")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dialogue_bar/MarginContainer2/MarginContainer/dialogue_label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["You hear some footsteps approaching"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mh3e6"]
 _data = {
 "RESET": SubResource("Animation_t7for"),
@@ -153,10 +152,10 @@ nodes_paths = {
 "dialogue_label": NodePath("dialogue_bar/MarginContainer2/MarginContainer/dialogue_label"),
 "flash_timer": NodePath("prophecy_stages/intro/flash_timer"),
 "knock_button": NodePath("prophecy_stages/doorstep/top_bar/inner_margin/buttons_bar/knock_button"),
-"prophecy_bar": NodePath("prophecy_stages/reading/prophecy_bar"),
-"prophecy_timer": NodePath("prophecy_stages/reading/prophecy_bar/prophecy_timer")
+"prophecy_bar": NodePath("prophecy_stages/reading/VBoxContainer/prophecy_bar"),
+"prophecy_timer": NodePath("prophecy_stages/reading/VBoxContainer/prophecy_bar/prophecy_timer")
 }
-prophechy_speed = 2
+prophechy_speed = 4
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -679,22 +678,6 @@ text = ">"
 visible = false
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="prophecy_stages/reading"]
-custom_minimum_size = Vector2(500, 500)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("7_vmii3")
-expand_mode = 1
-
-[node name="hands_rect" type="TextureRect" parent="prophecy_stages/reading"]
-custom_minimum_size = Vector2(700, 500)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("8_r7nef")
-expand_mode = 3
-
 [node name="top_bar" type="MarginContainer" parent="prophecy_stages/reading"]
 custom_minimum_size = Vector2(256, 52)
 layout_mode = 2
@@ -744,12 +727,24 @@ size_flags_horizontal = 8
 theme = ExtResource("9_s6h11")
 text = ">"
 
-[node name="prophecy_bar" type="ProgressBar" parent="prophecy_stages/reading"]
+[node name="TextureRect" type="TextureRect" parent="prophecy_stages/reading"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_n7pln")
+expand_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="prophecy_stages/reading"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="prophecy_bar" type="ProgressBar" parent="prophecy_stages/reading/VBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="prophecy_timer" type="Timer" parent="prophecy_stages/reading/prophecy_bar"]
+[node name="prophecy_timer" type="Timer" parent="prophecy_stages/reading/VBoxContainer/prophecy_bar"]
 wait_time = 0.05
 
 [node name="prophecy" type="MarginContainer" parent="prophecy_stages"]
@@ -860,7 +855,7 @@ texture = ExtResource("10_1351m")
 
 [node name="MarginContainer" type="MarginContainer" parent="dialogue_bar/MarginContainer2"]
 layout_mode = 2
-theme_override_constants/margin_left = 15
+theme_override_constants/margin_left = 165
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
@@ -869,7 +864,6 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 theme = ExtResource("9_s6h11")
 text = "You hear some footsteps approaching"
-horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="dialogue_bar"]
 visible = false
@@ -886,7 +880,6 @@ stream = ExtResource("2_r8h2h")
 autoplay = true
 
 [node name="replay_button" type="Button" parent="." groups=["buttons"]]
-visible = false
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = 1
@@ -959,7 +952,7 @@ stretch_mode = 0
 [connection signal="mouse_entered" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_mouse_entered"]
 [connection signal="mouse_exited" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_mouse_exited"]
 [connection signal="pressed" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_pressed"]
-[connection signal="timeout" from="prophecy_stages/reading/prophecy_bar/prophecy_timer" to="." method="_on_prophecy_timer_timeout"]
+[connection signal="timeout" from="prophecy_stages/reading/VBoxContainer/prophecy_bar/prophecy_timer" to="." method="_on_prophecy_timer_timeout"]
 [connection signal="mouse_entered" from="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_start_button_mouse_entered"]
 [connection signal="mouse_exited" from="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_start_button_mouse_exited"]
 [connection signal="pressed" from="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_quit_button_pressed"]
