@@ -70,10 +70,19 @@ func _play_sfx(sfx):
 	$sounds.play()
 
 func _on_quit_button_pressed():
+	_play_sfx(snap)
 	get_tree().quit()
 	
 func _on_question_button_pressed():
-	get_node(nodes_paths["dialogue_label"]).text = "????"
+	_play_sfx(snap)
+	var current_tab = $prophecy_stages.current_tab
+	var current_tab_match = var_to_str(current_tab)
+	var dialogue = get_node(nodes_paths["dialogue_label"])
+	match current_tab_match:
+		"0":
+			dialogue.text = "Please click START to get in touch with one of our available hikikomori prophets"
+		_:
+			dialogue.text = "none"
 
 
 func _change_dialogue(text:String):
@@ -131,20 +140,20 @@ func _on_flash_timer_timeout():
 
 func _on_knock_button_pressed():
 	var button = get_node(nodes_paths["knock_button"])
-	if knock_knock == 2:
+	if knock_knock == 1:
 		knock_knock = 0
 		$prophecy_stages.current_tab = 3
 		button.text = "knock"
 		_change_dialogue("entering")
 		get_node(nodes_paths["prophecy_timer"]).start()
 		_play_sfx(snap)
-	elif knock_knock == 0:
-		_change_dialogue("no answer")
-		button.disabled = true
-		$AnimationPlayer.play("knock")
-		await $AnimationPlayer.animation_finished
-		button.disabled = false
-		knock_knock += 1
+#	elif knock_knock == 0:
+#		_change_dialogue("no answer")
+#		button.disabled = true
+#		$AnimationPlayer.play("knock")
+#		await $AnimationPlayer.animation_finished
+#		button.disabled = false
+#		knock_knock += 1
 	else:
 		_change_dialogue("you can hear some heavy footsteps approaching")
 		button.disabled = true
@@ -173,12 +182,16 @@ func _on_prophecy_timer_timeout():
 		prophecy_bar.value = 0
 		get_node(nodes_paths["prophecy_timer"]).stop()
 		_play_sfx(prophecy_finished)
-		$prophecy_stages.current_tab = 4
-		_select_prophecy()
+		get_node(nodes_paths["receive_button"]).disabled = false
 	else:
 		prophecy_bar.value += prophechy_speed
 	$prophecy_stages/reading/TextureRect.texture = pic_selected
 
+
+func _on_receive_button_pressed():
+	$prophecy_stages.current_tab = 4
+	_select_prophecy()
+	get_node(nodes_paths["receive_button"]).disabled = true
 #---------- reading
 
 
@@ -192,9 +205,9 @@ func _select_prophecy():
 		_load_file_list("res://assets/texts/words.txt", words_array)
 	match method:
 		"1":
-			$prophecy_stages/prophecy/ColorRect/Label.text = _prophecy_word()
+			$prophecy_stages/prophecy/Label.text = _prophecy_word()
 		"2":
-			$prophecy_stages/prophecy/ColorRect/Label.text = _prophecy_or()
+			$prophecy_stages/prophecy/Label.text = _prophecy_or()
 		"3":
 			_prophecy_sentence()
 		_:
@@ -281,4 +294,6 @@ func _on_button_pressed():
 		_load_file_list("res://assets/texts/words.txt", words_array)
 	_select_prophecy()
 	
+
+
 

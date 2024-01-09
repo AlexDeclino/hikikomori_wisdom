@@ -849,17 +849,12 @@ theme_override_constants/margin_bottom = 65
 
 [node name="MarginContainer2" type="MarginContainer" parent="dialogue_bar"]
 layout_mode = 2
+theme_override_constants/margin_top = 21
+theme_override_constants/margin_bottom = 20
 
 [node name="NinePatchRect" type="NinePatchRect" parent="dialogue_bar/MarginContainer2"]
-custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 texture = ExtResource("10_1351m")
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="dialogue_bar/MarginContainer2"]
 layout_mode = 2

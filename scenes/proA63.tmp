@@ -11,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://rcyc765jc31x" path="res://_tests/prophecy_bg.png" id="9_ak3m4"]
 [ext_resource type="Theme" uid="uid://4xcwaohv4fjg" path="res://themes/vector_theme.tres" id="9_s6h11"]
 [ext_resource type="FontFile" uid="uid://dxaeubggv64bk" path="res://assets/fonts/Crimson_Text/CrimsonText-BoldItalic.ttf" id="10_5fj57"]
-[ext_resource type="Texture2D" uid="uid://bfstgxw71djlk" path="res://assets/dialogue_bar_01.png" id="10_1351m"]
 [ext_resource type="AudioStream" uid="uid://bkuyi4h34rnkp" path="res://assets/sfx/knock_knock.wav" id="10_i2l6h"]
+[ext_resource type="Texture2D" uid="uid://mmvabtjjs5s1" path="res://assets/dialogue_B_01.png" id="11_1blvc"]
 [ext_resource type="AudioStream" uid="uid://3kcn52ao21cn" path="res://assets/sfx/steps.ogg" id="11_lujcx"]
 [ext_resource type="AudioStream" uid="uid://bn0bjp1bkmdp1" path="res://assets/sfx/laugh_01.wav" id="12_fchqn"]
 [ext_resource type="Texture2D" uid="uid://buj8gcslljk6r" path="res://_tests/door0.png" id="14_wd5vw"]
@@ -849,15 +849,16 @@ theme_override_constants/margin_bottom = 65
 
 [node name="MarginContainer2" type="MarginContainer" parent="dialogue_bar"]
 layout_mode = 2
+theme_override_constants/margin_top = 21
+theme_override_constants/margin_bottom = 20
 
 [node name="NinePatchRect" type="NinePatchRect" parent="dialogue_bar/MarginContainer2"]
-custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
-texture = ExtResource("10_1351m")
+texture = ExtResource("11_1blvc")
 patch_margin_left = 10
-patch_margin_top = 10
+patch_margin_top = 15
 patch_margin_right = 10
-patch_margin_bottom = 10
+patch_margin_bottom = 15
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
@@ -871,6 +872,7 @@ theme_override_constants/margin_bottom = 15
 [node name="dialogue_label" type="Label" parent="dialogue_bar/MarginContainer2/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("9_s6h11")
+text = "this is wwwww"
 horizontal_alignment = 1
 
 [node name="sounds" type="AudioStreamPlayer" parent="."]

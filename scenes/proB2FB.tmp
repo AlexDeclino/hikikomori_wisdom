@@ -4,15 +4,15 @@
 [ext_resource type="AudioStream" uid="uid://cchwfbqae2hge" path="res://assets/sfx/foreboding-theme.ogg" id="2_r8h2h"]
 [ext_resource type="Texture2D" uid="uid://bpdsrc3nyuop4" path="res://assets/panel_bg_01.png" id="3_6wf5i"]
 [ext_resource type="Theme" uid="uid://df8afv8n0tqb0" path="res://themes/main_theme.tres" id="3_o8pwq"]
+[ext_resource type="FontFile" uid="uid://nd0s6xgshou2" path="res://assets/Godot_rough-Regular.ttf" id="4_76wjn"]
 [ext_resource type="Texture2D" uid="uid://bob02bhtcsqi0" path="res://_tests/door1.png" id="5_sxudo"]
 [ext_resource type="Texture2D" uid="uid://cjem35ig84soc" path="res://_tests/room0.png" id="6_lt4i0"]
 [ext_resource type="Texture2D" uid="uid://cnss002uaf3df" path="res://assets/prophecies/Mask group-1.png" id="7_vmii3"]
 [ext_resource type="Texture2D" uid="uid://d0o802qu6b2xq" path="res://assets/prophecies/hands.png" id="8_r7nef"]
-[ext_resource type="Texture2D" uid="uid://rcyc765jc31x" path="res://_tests/prophecy_bg.png" id="9_ak3m4"]
 [ext_resource type="Theme" uid="uid://4xcwaohv4fjg" path="res://themes/vector_theme.tres" id="9_s6h11"]
-[ext_resource type="FontFile" uid="uid://dxaeubggv64bk" path="res://assets/fonts/Crimson_Text/CrimsonText-BoldItalic.ttf" id="10_5fj57"]
 [ext_resource type="Texture2D" uid="uid://bfstgxw71djlk" path="res://assets/dialogue_bar_01.png" id="10_1351m"]
 [ext_resource type="AudioStream" uid="uid://bkuyi4h34rnkp" path="res://assets/sfx/knock_knock.wav" id="10_i2l6h"]
+[ext_resource type="Texture2D" uid="uid://bag6u0fogky02" path="res://assets/hikikomori_01.png" id="11_a217n"]
 [ext_resource type="AudioStream" uid="uid://3kcn52ao21cn" path="res://assets/sfx/steps.ogg" id="11_lujcx"]
 [ext_resource type="AudioStream" uid="uid://bn0bjp1bkmdp1" path="res://assets/sfx/laugh_01.wav" id="12_fchqn"]
 [ext_resource type="Texture2D" uid="uid://buj8gcslljk6r" path="res://_tests/door0.png" id="14_wd5vw"]
@@ -46,10 +46,10 @@ tracks/1/path = NodePath("dialogue_bar/MarginContainer2/MarginContainer/dialogue
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": ["You hear some footsteps approaching"]
 }
 
 [sub_resource type="Animation" id="Animation_tkm2w"]
@@ -154,8 +154,7 @@ nodes_paths = {
 "flash_timer": NodePath("prophecy_stages/intro/flash_timer"),
 "knock_button": NodePath("prophecy_stages/doorstep/top_bar/inner_margin/buttons_bar/knock_button"),
 "prophecy_bar": NodePath("prophecy_stages/reading/prophecy_bar"),
-"prophecy_timer": NodePath("prophecy_stages/reading/prophecy_bar/prophecy_timer"),
-"receive_button": NodePath("prophecy_stages/reading/top_bar/inner_margin/buttons_bar/receive_button")
+"prophecy_timer": NodePath("prophecy_stages/reading/prophecy_bar/prophecy_timer")
 }
 prophechy_speed = 2
 
@@ -731,12 +730,11 @@ size_flags_horizontal = 0
 theme = ExtResource("9_s6h11")
 text = "  X  "
 
-[node name="receive_button" type="Button" parent="prophecy_stages/reading/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+[node name="ask_button" type="Button" parent="prophecy_stages/reading/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("9_s6h11")
-disabled = true
-text = "receive prophecy"
+text = "ask the sybilla"
 
 [node name="start_button" type="Button" parent="prophecy_stages/reading/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
 visible = false
@@ -758,21 +756,24 @@ wait_time = 0.05
 visible = false
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="prophecy_stages/prophecy"]
-visible = false
-custom_minimum_size = Vector2(700, 700)
+[node name="ColorRect" type="ColorRect" parent="prophecy_stages/prophecy"]
+custom_minimum_size = Vector2(800, 800)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("9_ak3m4")
-expand_mode = 1
+color = Color(0.894118, 0.803922, 0.8, 1)
 
-[node name="Label" type="Label" parent="prophecy_stages/prophecy"]
-custom_minimum_size = Vector2(350, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("10_5fj57")
+[node name="Label" type="Label" parent="prophecy_stages/prophecy/ColorRect"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_76wjn")
 theme_override_font_sizes/font_size = 36
 text = "aaaa"
 horizontal_alignment = 1
@@ -845,21 +846,17 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 234
 theme_override_constants/margin_right = 234
-theme_override_constants/margin_bottom = 65
+theme_override_constants/margin_bottom = 75
 
 [node name="MarginContainer2" type="MarginContainer" parent="dialogue_bar"]
 layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="NinePatchRect" type="NinePatchRect" parent="dialogue_bar/MarginContainer2"]
-custom_minimum_size = Vector2(0, 90)
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 texture = ExtResource("10_1351m")
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="dialogue_bar/MarginContainer2"]
 layout_mode = 2
@@ -871,7 +868,16 @@ theme_override_constants/margin_bottom = 15
 [node name="dialogue_label" type="Label" parent="dialogue_bar/MarginContainer2/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("9_s6h11")
+text = "You hear some footsteps approaching"
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="dialogue_bar"]
+visible = false
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("11_a217n")
 
 [node name="sounds" type="AudioStreamPlayer" parent="."]
 
@@ -880,6 +886,7 @@ stream = ExtResource("2_r8h2h")
 autoplay = true
 
 [node name="replay_button" type="Button" parent="." groups=["buttons"]]
+visible = false
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = 1
@@ -948,7 +955,7 @@ stretch_mode = 0
 [connection signal="mouse_entered" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_start_button_mouse_entered"]
 [connection signal="mouse_exited" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_start_button_mouse_exited"]
 [connection signal="pressed" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/receive_button" to="." method="_on_receive_button_pressed"]
+[connection signal="pressed" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/ask_button" to="." method="_on_ask_button_pressed"]
 [connection signal="mouse_entered" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_mouse_entered"]
 [connection signal="mouse_exited" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_mouse_exited"]
 [connection signal="pressed" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_pressed"]
