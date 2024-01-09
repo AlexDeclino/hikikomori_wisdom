@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://62kem80pm0aa"]
+[gd_scene load_steps=33 format=3 uid="uid://62kem80pm0aa"]
 
 [ext_resource type="Script" path="res://scripts/prophecy.gd" id="1_fth8o"]
 [ext_resource type="AudioStream" uid="uid://cchwfbqae2hge" path="res://assets/sfx/foreboding-theme.ogg" id="2_r8h2h"]
@@ -6,7 +6,8 @@
 [ext_resource type="Theme" uid="uid://df8afv8n0tqb0" path="res://themes/main_theme.tres" id="3_o8pwq"]
 [ext_resource type="Texture2D" uid="uid://bob02bhtcsqi0" path="res://_tests/door1.png" id="5_sxudo"]
 [ext_resource type="Texture2D" uid="uid://cjem35ig84soc" path="res://_tests/room0.png" id="6_lt4i0"]
-[ext_resource type="Texture2D" uid="uid://cnss002uaf3df" path="res://assets/prophecies/Mask group-1.png" id="7_vmii3"]
+[ext_resource type="Texture2D" uid="uid://cwk2o2wyvcvcv" path="res://assets/hikiko/h_running.png" id="7_tl1bc"]
+[ext_resource type="Texture2D" uid="uid://3s2jaanh36an" path="res://assets/hikiko/h_running_i.png" id="8_qstay"]
 [ext_resource type="Texture2D" uid="uid://d0o802qu6b2xq" path="res://assets/prophecies/hands.png" id="8_r7nef"]
 [ext_resource type="Texture2D" uid="uid://rcyc765jc31x" path="res://_tests/prophecy_bg.png" id="9_ak3m4"]
 [ext_resource type="Theme" uid="uid://4xcwaohv4fjg" path="res://themes/vector_theme.tres" id="9_s6h11"]
@@ -14,14 +15,17 @@
 [ext_resource type="Texture2D" uid="uid://bfstgxw71djlk" path="res://assets/dialogue_bar_01.png" id="10_1351m"]
 [ext_resource type="AudioStream" uid="uid://bkuyi4h34rnkp" path="res://assets/sfx/knock_knock.wav" id="10_i2l6h"]
 [ext_resource type="AudioStream" uid="uid://3kcn52ao21cn" path="res://assets/sfx/steps.ogg" id="11_lujcx"]
-[ext_resource type="AudioStream" uid="uid://bn0bjp1bkmdp1" path="res://assets/sfx/laugh_01.wav" id="12_fchqn"]
 [ext_resource type="Texture2D" uid="uid://buj8gcslljk6r" path="res://_tests/door0.png" id="14_wd5vw"]
-[ext_resource type="Texture2D" uid="uid://bir75hjvtpdt6" path="res://_tests/door2.png" id="15_kyfnp"]
-[ext_resource type="Texture2D" uid="uid://dbtfbf28dcmes" path="res://_tests/door3.png" id="16_v5i12"]
+[ext_resource type="AudioStream" uid="uid://d4fe1s7f5e3rj" path="res://assets/sfx/SE_00_00.wav" id="16_ypee0"]
+[ext_resource type="Texture2D" uid="uid://dbfks3oyt7esq" path="res://assets/hikiko/door0.png" id="17_og2mx"]
 [ext_resource type="Texture2D" uid="uid://snj4rhw766ql" path="res://assets/q_x/q_h.png" id="18_1lol7"]
+[ext_resource type="Texture2D" uid="uid://b6yww1t4k4r35" path="res://assets/hikiko/door4.png" id="18_jfeyk"]
 [ext_resource type="Texture2D" uid="uid://dqk5rukye678g" path="res://assets/q_x/q_p.png" id="19_a5sia"]
+[ext_resource type="Texture2D" uid="uid://dffxcgk3jnxq6" path="res://assets/hikiko/door1.png" id="19_y5me1"]
 [ext_resource type="Texture2D" uid="uid://bwjvtpqtlhedw" path="res://assets/q_x/q_n.png" id="20_2ppog"]
+[ext_resource type="Texture2D" uid="uid://cf2bc6p6sj5g1" path="res://assets/hikiko/door2.png" id="20_nhlar"]
 [ext_resource type="Texture2D" uid="uid://bc88q0uankqa3" path="res://assets/q_x/x_h.png" id="21_fix3u"]
+[ext_resource type="Texture2D" uid="uid://ctb607uvmi6di" path="res://assets/hikiko/door3.png" id="21_mp80x"]
 [ext_resource type="Texture2D" uid="uid://35400prqwx4n" path="res://assets/q_x/x_p.png" id="22_dt8fw"]
 [ext_resource type="Texture2D" uid="uid://t6gfoftus7t7" path="res://assets/q_x/x_n.png" id="23_6l5jn"]
 
@@ -37,7 +41,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_sxudo")]
+"values": [ExtResource("17_og2mx")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -73,9 +77,9 @@ tracks/0/keys = {
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("12_fchqn")
+"stream": ExtResource("16_ypee0")
 }],
-"times": PackedFloat32Array(0.3, 1.2, 4)
+"times": PackedFloat32Array(0.3, 1.2, 3.3)
 }
 tracks/0/use_blend = true
 tracks/1/type = "value"
@@ -85,22 +89,22 @@ tracks/1/path = NodePath("prophecy_stages/doorstep/door_rect:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.8, 3, 3.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.8, 3, 3.2, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("5_sxudo"), ExtResource("14_wd5vw"), ExtResource("5_sxudo"), ExtResource("15_kyfnp"), ExtResource("16_v5i12")]
+"values": [ExtResource("17_og2mx"), ExtResource("18_jfeyk"), ExtResource("17_og2mx"), ExtResource("19_y5me1"), ExtResource("20_nhlar"), ExtResource("21_mp80x")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("dialogue_bar/MarginContainer2/MarginContainer/dialogue_label:text")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 1.2, 1.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(1.2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": ["welcome", "Let's try again", "You hear some footsteps approaching", "You hear some footsteps approaching"]
+"values": ["**heavy footsteps approaching**", " ", "your question please?"]
 }
 
 [sub_resource type="Animation" id="Animation_b82qn"]
@@ -559,11 +563,11 @@ visible = false
 layout_mode = 2
 
 [node name="door_rect" type="TextureRect" parent="prophecy_stages/doorstep"]
-custom_minimum_size = Vector2(800, 800)
+custom_minimum_size = Vector2(750, 750)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("5_sxudo")
+texture = ExtResource("17_og2mx")
 expand_mode = 1
 
 [node name="top_bar" type="MarginContainer" parent="prophecy_stages/doorstep"]
@@ -685,11 +689,21 @@ custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("7_vmii3")
-expand_mode = 1
+texture = ExtResource("7_tl1bc")
+expand_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="prophecy_stages/reading"]
+visible = false
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_qstay")
+expand_mode = 5
 
 [node name="hands_rect" type="TextureRect" parent="prophecy_stages/reading"]
-custom_minimum_size = Vector2(700, 500)
+visible = false
+custom_minimum_size = Vector2(700, 320)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -736,7 +750,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("9_s6h11")
 disabled = true
-text = "receive prophecy"
+text = "........."
 
 [node name="start_button" type="Button" parent="prophecy_stages/reading/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
 visible = false
@@ -818,13 +832,13 @@ text = "  X  "
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("9_s6h11")
-text = "replay"
+text = "replay (-10 truth)"
 
 [node name="restart_button" type="Button" parent="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("9_s6h11")
-text = "restart"
+text = "restart (+10 luck)"
 
 [node name="start_button" type="Button" parent="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
 visible = false
@@ -871,6 +885,7 @@ theme_override_constants/margin_bottom = 15
 [node name="dialogue_label" type="Label" parent="dialogue_bar/MarginContainer2/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("9_s6h11")
+text = "your question please?"
 horizontal_alignment = 1
 
 [node name="sounds" type="AudioStreamPlayer" parent="."]
@@ -880,6 +895,7 @@ stream = ExtResource("2_r8h2h")
 autoplay = true
 
 [node name="replay_button" type="Button" parent="." groups=["buttons"]]
+visible = false
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = 1

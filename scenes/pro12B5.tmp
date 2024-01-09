@@ -1,0 +1,981 @@
+[gd_scene load_steps=33 format=3 uid="uid://62kem80pm0aa"]
+
+[ext_resource type="Script" path="res://scripts/prophecy.gd" id="1_fth8o"]
+[ext_resource type="AudioStream" uid="uid://cchwfbqae2hge" path="res://assets/sfx/foreboding-theme.ogg" id="2_r8h2h"]
+[ext_resource type="Texture2D" uid="uid://bpdsrc3nyuop4" path="res://assets/panel_bg_01.png" id="3_6wf5i"]
+[ext_resource type="Theme" uid="uid://df8afv8n0tqb0" path="res://themes/main_theme.tres" id="3_o8pwq"]
+[ext_resource type="Texture2D" uid="uid://bob02bhtcsqi0" path="res://_tests/door1.png" id="5_sxudo"]
+[ext_resource type="Texture2D" uid="uid://cjem35ig84soc" path="res://_tests/room0.png" id="6_lt4i0"]
+[ext_resource type="Texture2D" uid="uid://cwk2o2wyvcvcv" path="res://assets/hikiko/h_running.png" id="7_tl1bc"]
+[ext_resource type="Texture2D" uid="uid://3s2jaanh36an" path="res://assets/hikiko/h_running_i.png" id="8_qstay"]
+[ext_resource type="Texture2D" uid="uid://d0o802qu6b2xq" path="res://assets/prophecies/hands.png" id="8_r7nef"]
+[ext_resource type="Texture2D" uid="uid://rcyc765jc31x" path="res://_tests/prophecy_bg.png" id="9_ak3m4"]
+[ext_resource type="Theme" uid="uid://4xcwaohv4fjg" path="res://themes/vector_theme.tres" id="9_s6h11"]
+[ext_resource type="FontFile" uid="uid://dxaeubggv64bk" path="res://assets/fonts/Crimson_Text/CrimsonText-BoldItalic.ttf" id="10_5fj57"]
+[ext_resource type="Texture2D" uid="uid://bfstgxw71djlk" path="res://assets/dialogue_bar_01.png" id="10_1351m"]
+[ext_resource type="AudioStream" uid="uid://bkuyi4h34rnkp" path="res://assets/sfx/knock_knock.wav" id="10_i2l6h"]
+[ext_resource type="AudioStream" uid="uid://3kcn52ao21cn" path="res://assets/sfx/steps.ogg" id="11_lujcx"]
+[ext_resource type="Texture2D" uid="uid://buj8gcslljk6r" path="res://_tests/door0.png" id="14_wd5vw"]
+[ext_resource type="AudioStream" uid="uid://d4fe1s7f5e3rj" path="res://assets/sfx/SE_00_00.wav" id="16_ypee0"]
+[ext_resource type="Texture2D" uid="uid://dbfks3oyt7esq" path="res://assets/hikiko/door0.png" id="17_og2mx"]
+[ext_resource type="Texture2D" uid="uid://snj4rhw766ql" path="res://assets/q_x/q_h.png" id="18_1lol7"]
+[ext_resource type="Texture2D" uid="uid://b6yww1t4k4r35" path="res://assets/hikiko/door4.png" id="18_jfeyk"]
+[ext_resource type="Texture2D" uid="uid://dqk5rukye678g" path="res://assets/q_x/q_p.png" id="19_a5sia"]
+[ext_resource type="Texture2D" uid="uid://dffxcgk3jnxq6" path="res://assets/hikiko/door1.png" id="19_y5me1"]
+[ext_resource type="Texture2D" uid="uid://bwjvtpqtlhedw" path="res://assets/q_x/q_n.png" id="20_2ppog"]
+[ext_resource type="Texture2D" uid="uid://cf2bc6p6sj5g1" path="res://assets/hikiko/door2.png" id="20_nhlar"]
+[ext_resource type="Texture2D" uid="uid://bc88q0uankqa3" path="res://assets/q_x/x_h.png" id="21_fix3u"]
+[ext_resource type="Texture2D" uid="uid://ctb607uvmi6di" path="res://assets/hikiko/door3.png" id="21_mp80x"]
+[ext_resource type="Texture2D" uid="uid://35400prqwx4n" path="res://assets/q_x/x_p.png" id="22_dt8fw"]
+[ext_resource type="Texture2D" uid="uid://t6gfoftus7t7" path="res://assets/q_x/x_n.png" id="23_6l5jn"]
+
+[sub_resource type="Animation" id="Animation_t7for"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("prophecy_stages/doorstep/door_rect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("17_og2mx")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("dialogue_bar/MarginContainer2/MarginContainer/dialogue_label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_tkm2w"]
+resource_name = "door_opening"
+length = 5.0065
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sounds")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_i2l6h")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_lujcx")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("16_ypee0")
+}],
+"times": PackedFloat32Array(0.3, 1.2, 3.3)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("prophecy_stages/doorstep/door_rect:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.8, 3, 3.2, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("17_og2mx"), ExtResource("18_jfeyk"), ExtResource("17_og2mx"), ExtResource("19_y5me1"), ExtResource("20_nhlar"), ExtResource("21_mp80x")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("dialogue_bar/MarginContainer2/MarginContainer/dialogue_label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": ["**heavy footsteps approaching**", " ", "your question please?"]
+}
+
+[sub_resource type="Animation" id="Animation_b82qn"]
+resource_name = "knock"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("prophecy_stages/doorstep/door_rect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("14_wd5vw"), ExtResource("5_sxudo")]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sounds")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_i2l6h")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mh3e6"]
+_data = {
+"RESET": SubResource("Animation_t7for"),
+"door_opening": SubResource("Animation_tkm2w"),
+"knock": SubResource("Animation_b82qn")
+}
+
+[node name="hikikomori_room" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fth8o")
+nodes_paths = {
+"dialogue_label": NodePath("dialogue_bar/MarginContainer2/MarginContainer/dialogue_label"),
+"flash_timer": NodePath("prophecy_stages/intro/flash_timer"),
+"knock_button": NodePath("prophecy_stages/doorstep/top_bar/inner_margin/buttons_bar/knock_button"),
+"prophecy_bar": NodePath("prophecy_stages/reading/prophecy_bar"),
+"prophecy_timer": NodePath("prophecy_stages/reading/prophecy_bar/prophecy_timer"),
+"receive_button": NodePath("prophecy_stages/reading/top_bar/inner_margin/buttons_bar/receive_button")
+}
+prophechy_speed = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.431373, 0.372549, 0.313726, 1)
+
+[node name="frame_background" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(1000, 1000)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_6wf5i")
+
+[node name="prophecy_stages" type="TabContainer" parent="."]
+custom_minimum_size = Vector2(288, 288)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_o8pwq")
+tabs_visible = false
+
+[node name="intro" type="MarginContainer" parent="prophecy_stages"]
+visible = false
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="prophecy_stages/intro"]
+custom_minimum_size = Vector2(900, 900)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label2" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label3" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label4" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label5" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label6" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label7" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label8" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label9" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label10" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label11" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label12" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label13" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label14" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label15" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label16" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label17" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label18" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label19" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label20" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="Label21" type="Label" parent="prophecy_stages/intro/HFlowContainer"]
+custom_minimum_size = Vector2(235, 112)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("9_s6h11")
+theme_override_colors/font_color = Color(0.215686, 0.215686, 0.215686, 1)
+text = "HIKIKOMORI
+WISDOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="top_bar" type="MarginContainer" parent="prophecy_stages/intro"]
+custom_minimum_size = Vector2(256, 52)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 480
+theme_override_constants/margin_top = 67
+theme_override_constants/margin_right = 480
+theme_override_constants/margin_bottom = 0
+
+[node name="top_color" type="ColorRect" parent="prophecy_stages/intro/top_bar"]
+layout_mode = 2
+color = Color(0.482353, 0.482353, 0.482353, 1)
+
+[node name="inner_margin" type="MarginContainer" parent="prophecy_stages/intro/top_bar"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/margin_left = 86
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 86
+theme_override_constants/margin_bottom = 10
+
+[node name="buttons_bar" type="HBoxContainer" parent="prophecy_stages/intro/top_bar/inner_margin"]
+custom_minimum_size = Vector2(0, 21)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 7
+
+[node name="quit_button" type="Button" parent="prophecy_stages/intro/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+visible = false
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("9_s6h11")
+text = "  X  "
+
+[node name="start_button" type="Button" parent="prophecy_stages/intro/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_s6h11")
+text = "START"
+
+[node name="question_button" type="Button" parent="prophecy_stages/intro/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+visible = false
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("9_s6h11")
+text = "  ?  "
+
+[node name="flash_timer" type="Timer" parent="prophecy_stages/intro"]
+wait_time = 0.05
+autostart = true
+
+[node name="doorstep" type="MarginContainer" parent="prophecy_stages"]
+layout_mode = 2
+
+[node name="door_rect" type="TextureRect" parent="prophecy_stages/doorstep"]
+custom_minimum_size = Vector2(750, 750)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("17_og2mx")
+expand_mode = 1
+
+[node name="top_bar" type="MarginContainer" parent="prophecy_stages/doorstep"]
+custom_minimum_size = Vector2(256, 52)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 480
+theme_override_constants/margin_top = 67
+theme_override_constants/margin_right = 480
+theme_override_constants/margin_bottom = 0
+
+[node name="top_color" type="ColorRect" parent="prophecy_stages/doorstep/top_bar"]
+layout_mode = 2
+color = Color(0.482353, 0.482353, 0.482353, 1)
+
+[node name="inner_margin" type="MarginContainer" parent="prophecy_stages/doorstep/top_bar"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/margin_left = 86
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 86
+theme_override_constants/margin_bottom = 10
+
+[node name="buttons_bar" type="HBoxContainer" parent="prophecy_stages/doorstep/top_bar/inner_margin"]
+custom_minimum_size = Vector2(0, 21)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 7
+
+[node name="quit_button" type="Button" parent="prophecy_stages/doorstep/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+visible = false
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("9_s6h11")
+text = "  X  "
+
+[node name="knock_button" type="Button" parent="prophecy_stages/doorstep/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_s6h11")
+text = "knock"
+
+[node name="start_button" type="Button" parent="prophecy_stages/doorstep/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+visible = false
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("9_s6h11")
+text = ">"
+
+[node name="room" type="MarginContainer" parent="prophecy_stages"]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="prophecy_stages/room"]
+custom_minimum_size = Vector2(800, 800)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_lt4i0")
+expand_mode = 1
+
+[node name="top_bar" type="MarginContainer" parent="prophecy_stages/room"]
+custom_minimum_size = Vector2(256, 52)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 480
+theme_override_constants/margin_top = 67
+theme_override_constants/margin_right = 480
+theme_override_constants/margin_bottom = 0
+
+[node name="top_color" type="ColorRect" parent="prophecy_stages/room/top_bar"]
+layout_mode = 2
+color = Color(0.482353, 0.482353, 0.482353, 1)
+
+[node name="inner_margin" type="MarginContainer" parent="prophecy_stages/room/top_bar"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/margin_left = 86
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 86
+theme_override_constants/margin_bottom = 10
+
+[node name="buttons_bar" type="HBoxContainer" parent="prophecy_stages/room/top_bar/inner_margin"]
+custom_minimum_size = Vector2(0, 21)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 7
+
+[node name="quit_button" type="Button" parent="prophecy_stages/room/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+visible = false
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("9_s6h11")
+text = "  X  "
+
+[node name="ask_button" type="Button" parent="prophecy_stages/room/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_s6h11")
+text = "ask the sybilla"
+
+[node name="start_button" type="Button" parent="prophecy_stages/room/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+visible = false
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("9_s6h11")
+text = ">"
+
+[node name="reading" type="MarginContainer" parent="prophecy_stages"]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="prophecy_stages/reading"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_tl1bc")
+expand_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="prophecy_stages/reading"]
+visible = false
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_qstay")
+expand_mode = 5
+
+[node name="hands_rect" type="TextureRect" parent="prophecy_stages/reading"]
+visible = false
+custom_minimum_size = Vector2(700, 320)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_r7nef")
+expand_mode = 3
+
+[node name="top_bar" type="MarginContainer" parent="prophecy_stages/reading"]
+custom_minimum_size = Vector2(256, 52)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 480
+theme_override_constants/margin_top = 67
+theme_override_constants/margin_right = 480
+theme_override_constants/margin_bottom = 0
+
+[node name="top_color" type="ColorRect" parent="prophecy_stages/reading/top_bar"]
+layout_mode = 2
+color = Color(0.482353, 0.482353, 0.482353, 1)
+
+[node name="inner_margin" type="MarginContainer" parent="prophecy_stages/reading/top_bar"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/margin_left = 86
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 86
+theme_override_constants/margin_bottom = 10
+
+[node name="buttons_bar" type="HBoxContainer" parent="prophecy_stages/reading/top_bar/inner_margin"]
+custom_minimum_size = Vector2(0, 21)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 7
+
+[node name="quit_button" type="Button" parent="prophecy_stages/reading/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+visible = false
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("9_s6h11")
+text = "  X  "
+
+[node name="receive_button" type="Button" parent="prophecy_stages/reading/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_s6h11")
+disabled = true
+text = "........."
+
+[node name="start_button" type="Button" parent="prophecy_stages/reading/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+visible = false
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("9_s6h11")
+text = ">"
+
+[node name="prophecy_bar" type="ProgressBar" parent="prophecy_stages/reading"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="prophecy_timer" type="Timer" parent="prophecy_stages/reading/prophecy_bar"]
+wait_time = 0.05
+
+[node name="prophecy" type="MarginContainer" parent="prophecy_stages"]
+visible = false
+layout_mode = 2
+
+[node name="ColorRect" type="TextureRect" parent="prophecy_stages/prophecy"]
+visible = false
+custom_minimum_size = Vector2(700, 700)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("9_ak3m4")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="prophecy_stages/prophecy"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("10_5fj57")
+theme_override_font_sizes/font_size = 36
+text = "aaaa"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="top_bar" type="MarginContainer" parent="prophecy_stages/prophecy"]
+custom_minimum_size = Vector2(256, 52)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 480
+theme_override_constants/margin_top = 67
+theme_override_constants/margin_right = 480
+theme_override_constants/margin_bottom = 0
+
+[node name="top_color" type="ColorRect" parent="prophecy_stages/prophecy/top_bar"]
+layout_mode = 2
+color = Color(0.482353, 0.482353, 0.482353, 1)
+
+[node name="inner_margin" type="MarginContainer" parent="prophecy_stages/prophecy/top_bar"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/margin_left = 86
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 86
+theme_override_constants/margin_bottom = 10
+
+[node name="buttons_bar" type="HBoxContainer" parent="prophecy_stages/prophecy/top_bar/inner_margin"]
+custom_minimum_size = Vector2(0, 21)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 7
+
+[node name="quit_button" type="Button" parent="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+visible = false
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("9_s6h11")
+text = "  X  "
+
+[node name="replay_button" type="Button" parent="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_s6h11")
+text = "replay (-10 truth)"
+
+[node name="restart_button" type="Button" parent="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_s6h11")
+text = "restart (+10 luck)"
+
+[node name="start_button" type="Button" parent="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
+visible = false
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("9_s6h11")
+text = ">"
+
+[node name="dialogue_bar" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 234
+theme_override_constants/margin_right = 234
+theme_override_constants/margin_bottom = 65
+
+[node name="MarginContainer2" type="MarginContainer" parent="dialogue_bar"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="dialogue_bar/MarginContainer2"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+texture = ExtResource("10_1351m")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="dialogue_bar/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="dialogue_label" type="Label" parent="dialogue_bar/MarginContainer2/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("9_s6h11")
+text = "your question please?"
+horizontal_alignment = 1
+
+[node name="sounds" type="AudioStreamPlayer" parent="."]
+
+[node name="ost" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_r8h2h")
+autoplay = true
+
+[node name="replay_button" type="Button" parent="." groups=["buttons"]]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -27.0
+offset_bottom = 27.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("9_s6h11")
+text = "QR"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mh3e6")
+}
+
+[node name="question_button" type="TextureButton" parent="."]
+layout_mode = 1
+offset_left = 430.0
+offset_top = 46.0
+offset_right = 586.0
+offset_bottom = 204.0
+texture_normal = ExtResource("18_1lol7")
+texture_pressed = ExtResource("19_a5sia")
+texture_hover = ExtResource("20_2ppog")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="quit_button" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -584.0
+offset_top = 45.0
+offset_right = -428.0
+offset_bottom = 203.0
+grow_horizontal = 0
+texture_normal = ExtResource("21_fix3u")
+texture_pressed = ExtResource("22_dt8fw")
+texture_hover = ExtResource("23_6l5jn")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="prophecy_stages/intro/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="mouse_entered" from="prophecy_stages/intro/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="prophecy_stages/intro/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_mouse_exited"]
+[connection signal="pressed" from="prophecy_stages/intro/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="prophecy_stages/intro/flash_timer" to="." method="_on_flash_timer_timeout"]
+[connection signal="mouse_entered" from="prophecy_stages/doorstep/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="prophecy_stages/doorstep/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_start_button_mouse_exited"]
+[connection signal="pressed" from="prophecy_stages/doorstep/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="prophecy_stages/doorstep/top_bar/inner_margin/buttons_bar/knock_button" to="." method="_on_knock_button_pressed"]
+[connection signal="mouse_entered" from="prophecy_stages/doorstep/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="prophecy_stages/doorstep/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_mouse_exited"]
+[connection signal="pressed" from="prophecy_stages/doorstep/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="prophecy_stages/room/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="prophecy_stages/room/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_start_button_mouse_exited"]
+[connection signal="pressed" from="prophecy_stages/room/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="prophecy_stages/room/top_bar/inner_margin/buttons_bar/ask_button" to="." method="_on_ask_button_pressed"]
+[connection signal="mouse_entered" from="prophecy_stages/room/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="prophecy_stages/room/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_mouse_exited"]
+[connection signal="pressed" from="prophecy_stages/room/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_start_button_mouse_exited"]
+[connection signal="pressed" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/receive_button" to="." method="_on_receive_button_pressed"]
+[connection signal="mouse_entered" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_mouse_exited"]
+[connection signal="pressed" from="prophecy_stages/reading/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="prophecy_stages/reading/prophecy_bar/prophecy_timer" to="." method="_on_prophecy_timer_timeout"]
+[connection signal="mouse_entered" from="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_start_button_mouse_exited"]
+[connection signal="pressed" from="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar/replay_button" to="." method="_on_ask_button_pressed"]
+[connection signal="pressed" from="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar/restart_button" to="." method="_on_restart_button_pressed"]
+[connection signal="mouse_entered" from="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_mouse_exited"]
+[connection signal="pressed" from="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="replay_button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="question_button" to="." method="_on_question_button_pressed"]
+[connection signal="pressed" from="quit_button" to="." method="_on_quit_button_pressed"]

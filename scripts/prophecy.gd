@@ -12,13 +12,16 @@ var prophecy_calculating = preload("res://assets/sfx/laugh_01.wav")
 var prophecy_finished = preload("res://assets/sfx/1054.wav")
 var snap = preload("res://assets/sfx/snap.wav")
 var steps = preload("res://assets/sfx/steps.ogg")
+var hmmmm = preload("res://assets/sfx/SE_00_27.wav")
+var applause = preload("res://assets/sfx/SE_00_38.wav")
+var calculating = preload("res://assets/sfx/SE_00_13.wav")
 #cursors
 var hand_cursor = preload("res://assets/cursors/hand_knock.png")
 var arrow_cursor = preload("res://assets/cursors/hand_normal.png")
 
 var random_pics = [
-		preload("res://assets/prophecies/Mask group-1.png"),
-		preload("res://assets/prophecies/Mask group.png")
+		preload("res://assets/hikiko/h_running_i.png"),
+		preload("res://assets/hikiko/h_running.png")
 	]
 
 #lists
@@ -74,13 +77,13 @@ func _on_quit_button_pressed():
 	get_tree().quit()
 	
 func _on_question_button_pressed():
-	_play_sfx(snap)
+	_play_sfx(hmmmm)
 	var current_tab = $prophecy_stages.current_tab
 	var current_tab_match = var_to_str(current_tab)
 	var dialogue = get_node(nodes_paths["dialogue_label"])
 	match current_tab_match:
 		"0":
-			dialogue.text = "Please click START to get in touch with one of our available hikikomori prophets"
+			dialogue.text = "Do I really want this?"
 		_:
 			dialogue.text = "none"
 
@@ -94,7 +97,7 @@ func _change_dialogue(text:String):
 func _on_start_button_pressed():
 	_play_sfx(snap)
 	$prophecy_stages.current_tab += 1
-	_change_dialogue("in front of the doorstep")
+	_change_dialogue("b-tier hikikomori unlocked. KNOCK to begin the prophecy.")
 	#this stops flash timer just in case
 	if not get_node(nodes_paths["flash_timer"]).is_stopped():
 		get_node(nodes_paths["flash_timer"]).stop()
@@ -144,7 +147,7 @@ func _on_knock_button_pressed():
 		knock_knock = 0
 		$prophecy_stages.current_tab = 3
 		button.text = "knock"
-		_change_dialogue("entering")
+		_change_dialogue("your prophecy will be ready in a moment")
 		get_node(nodes_paths["prophecy_timer"]).start()
 		_play_sfx(snap)
 #	elif knock_knock == 0:
@@ -155,13 +158,13 @@ func _on_knock_button_pressed():
 #		button.disabled = false
 #		knock_knock += 1
 	else:
-		_change_dialogue("you can hear some heavy footsteps approaching")
 		button.disabled = true
 		$AnimationPlayer.play("door_opening")
 		await $AnimationPlayer.animation_finished
+		_play_sfx(hmmmm)
 		button.disabled = false
 		knock_knock += 1
-		button.text = "enter"
+		button.text = "how do I achieve peak happiness?"
 
 #---------- doorstep
 
@@ -169,29 +172,33 @@ func _on_knock_button_pressed():
 func _on_ask_button_pressed():
 	$prophecy_stages.current_tab = 3
 	get_node(nodes_paths["prophecy_timer"]).start()
+	get_node(nodes_paths["receive_button"]).text = "........."
 	_play_sfx(snap)
 # -------- room
 
 #reading ----------
 
 func _on_prophecy_timer_timeout():
-	random_pics.shuffle()
+	_play_sfx(calculating)
 	var prophecy_bar = get_node(nodes_paths["prophecy_bar"])
-	var pic_selected = random_pics.front()
 	if prophecy_bar.value >= 100:
 		prophecy_bar.value = 0
 		get_node(nodes_paths["prophecy_timer"]).stop()
-		_play_sfx(prophecy_finished)
+		_play_sfx(calculating)
 		get_node(nodes_paths["receive_button"]).disabled = false
+		get_node(nodes_paths["receive_button"]).text = "I'm ready"
+		get_node(nodes_paths["dialogue_label"]).text = "Please click the button above to receive your prophecy. Every sale is final-ish."
 	else:
 		prophecy_bar.value += prophechy_speed
-	$prophecy_stages/reading/TextureRect.texture = pic_selected
+	$prophecy_stages/reading/TextureRect2.visible = !$prophecy_stages/reading/TextureRect2.visible
 
 
 func _on_receive_button_pressed():
+	_play_sfx(applause)
 	$prophecy_stages.current_tab = 4
 	_select_prophecy()
 	get_node(nodes_paths["receive_button"]).disabled = true
+	get_node(nodes_paths["dialogue_label"]).text = "Your prophecy is served. Consider leaving a 5 stars review."
 #---------- reading
 
 
@@ -262,8 +269,9 @@ func _prophecy_sentence():
 	print("sentence")
 
 func _on_restart_button_pressed():
+	_change_dialogue("press START to connect to one of our available hikikomori prophets.")
 	$prophecy_stages.current_tab = 0
-
+	$prophecy_stages/doorstep/door_rect.texture = preload("res://assets/hikiko/door0.png")
 
 #---------- stage 2
 
