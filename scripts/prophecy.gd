@@ -40,10 +40,10 @@ var daytime = 0
 var is_question = false
 
 func _ready():
-
+	get_node(nodes_paths["dialogue_label"]).text = "press START to START the prophecy. Your data is being collected."
 	Input.set_custom_mouse_cursor(arrow_cursor, Input.CURSOR_ARROW, Vector2(20,20))
 	Input.set_custom_mouse_cursor(hand_cursor, Input.CURSOR_POINTING_HAND, Vector2(24,24))
-#	$AnimationPlayer.play("intro_fade-in")
+
 	
 	#load all words lists into arrays
 	_load_file_list("res://assets/texts/words.txt", words_array)

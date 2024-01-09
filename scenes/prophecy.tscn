@@ -885,7 +885,7 @@ theme_override_constants/margin_bottom = 15
 [node name="dialogue_label" type="Label" parent="dialogue_bar/MarginContainer2/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("9_s6h11")
-text = "your question please?"
+text = "press START to START the prohecy process. Your data is being collected."
 horizontal_alignment = 1
 
 [node name="sounds" type="AudioStreamPlayer" parent="."]
