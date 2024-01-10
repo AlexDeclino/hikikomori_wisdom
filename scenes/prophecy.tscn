@@ -12,9 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://rcyc765jc31x" path="res://_tests/prophecy_bg.png" id="9_ak3m4"]
 [ext_resource type="Theme" uid="uid://4xcwaohv4fjg" path="res://themes/vector_theme.tres" id="9_s6h11"]
 [ext_resource type="FontFile" uid="uid://dxaeubggv64bk" path="res://assets/fonts/Crimson_Text/CrimsonText-BoldItalic.ttf" id="10_5fj57"]
-[ext_resource type="Texture2D" uid="uid://bfstgxw71djlk" path="res://assets/dialogue_bar_01.png" id="10_1351m"]
 [ext_resource type="AudioStream" uid="uid://bkuyi4h34rnkp" path="res://assets/sfx/knock_knock.wav" id="10_i2l6h"]
 [ext_resource type="AudioStream" uid="uid://3kcn52ao21cn" path="res://assets/sfx/steps.ogg" id="11_lujcx"]
+[ext_resource type="Texture2D" uid="uid://mmvabtjjs5s1" path="res://assets/dialogue_B_01.png" id="12_4n3sy"]
 [ext_resource type="Texture2D" uid="uid://buj8gcslljk6r" path="res://_tests/door0.png" id="14_wd5vw"]
 [ext_resource type="AudioStream" uid="uid://d4fe1s7f5e3rj" path="res://assets/sfx/SE_00_00.wav" id="16_ypee0"]
 [ext_resource type="Texture2D" uid="uid://dbfks3oyt7esq" path="res://assets/hikiko/door0.png" id="17_og2mx"]
@@ -202,6 +202,7 @@ theme = ExtResource("3_o8pwq")
 tabs_visible = false
 
 [node name="intro" type="MarginContainer" parent="prophecy_stages"]
+visible = false
 layout_mode = 2
 
 [node name="HFlowContainer" type="HFlowContainer" parent="prophecy_stages/intro"]
@@ -559,7 +560,6 @@ wait_time = 0.05
 autostart = true
 
 [node name="doorstep" type="MarginContainer" parent="prophecy_stages"]
-visible = false
 layout_mode = 2
 
 [node name="door_rect" type="TextureRect" parent="prophecy_stages/doorstep"]
@@ -782,12 +782,11 @@ texture = ExtResource("9_ak3m4")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="prophecy_stages/prophecy"]
-custom_minimum_size = Vector2(350, 0)
+custom_minimum_size = Vector2(550, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("10_5fj57")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 48
 text = "aaaa"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -832,13 +831,13 @@ text = "  X  "
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("9_s6h11")
-text = "replay (-10 truth)"
+text = "refund (-10 truth)"
 
 [node name="restart_button" type="Button" parent="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("9_s6h11")
-text = "restart (+10 luck)"
+text = "accept (+10 luck)"
 
 [node name="start_button" type="Button" parent="prophecy_stages/prophecy/top_bar/inner_margin/buttons_bar" groups=["buttons"]]
 visible = false
@@ -867,11 +866,11 @@ layout_mode = 2
 [node name="NinePatchRect" type="NinePatchRect" parent="dialogue_bar/MarginContainer2"]
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
-texture = ExtResource("10_1351m")
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
+texture = ExtResource("12_4n3sy")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
@@ -885,7 +884,8 @@ theme_override_constants/margin_bottom = 15
 [node name="dialogue_label" type="Label" parent="dialogue_bar/MarginContainer2/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("9_s6h11")
-text = "press START to START the prohecy process. Your data is being collected."
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "press START to START the prophecy process. Godspeed."
 horizontal_alignment = 1
 
 [node name="sounds" type="AudioStreamPlayer" parent="."]

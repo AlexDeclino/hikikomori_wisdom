@@ -29,6 +29,7 @@ var words_array = []
 var preword_array = []
 var dialogues_array = []
 var questions_array = []
+var thoughts_array = []
 
 #stats var
 var money = 0
@@ -50,7 +51,7 @@ func _ready():
 	_load_file_list("res://assets/texts/pre_words.txt", preword_array)
 	_load_file_list("res://assets/texts/dialogues.txt", dialogues_array)
 	_load_file_list("res://assets/texts/questions.txt", questions_array)
-	
+	_load_file_list("res://assets/texts/thoughts.txt", thoughts_array)
 
 	#apply settings for cursor and focus to all buttons
 	var buttons = get_tree().get_nodes_in_group("buttons")
@@ -78,14 +79,8 @@ func _on_quit_button_pressed():
 	
 func _on_question_button_pressed():
 	_play_sfx(hmmmm)
-	var current_tab = $prophecy_stages.current_tab
-	var current_tab_match = var_to_str(current_tab)
 	var dialogue = get_node(nodes_paths["dialogue_label"])
-	match current_tab_match:
-		"0":
-			dialogue.text = "Do I really want this?"
-		_:
-			dialogue.text = "none"
+	dialogue.text = thoughts_array[randi() % thoughts_array.size()]
 
 
 func _change_dialogue(text:String):
@@ -97,7 +92,7 @@ func _change_dialogue(text:String):
 func _on_start_button_pressed():
 	_play_sfx(snap)
 	$prophecy_stages.current_tab += 1
-	_change_dialogue("b-tier hikikomori unlocked. KNOCK to begin the prophecy.")
+	_change_dialogue("B-tier hikikomori unlocked. KNOCK to begin the prophecy.")
 	#this stops flash timer just in case
 	if not get_node(nodes_paths["flash_timer"]).is_stopped():
 		get_node(nodes_paths["flash_timer"]).stop()
@@ -147,7 +142,7 @@ func _on_knock_button_pressed():
 		knock_knock = 0
 		$prophecy_stages.current_tab = 3
 		button.text = "knock"
-		_change_dialogue("your prophecy will be ready in a moment")
+		_change_dialogue("**gaadgzgzgzgzgzgzzgzgggagaaauhaah**")
 		get_node(nodes_paths["prophecy_timer"]).start()
 		_play_sfx(snap)
 #	elif knock_knock == 0:
@@ -164,7 +159,7 @@ func _on_knock_button_pressed():
 		_play_sfx(hmmmm)
 		button.disabled = false
 		knock_knock += 1
-		button.text = "how do I achieve peak happiness?"
+		button.text = "what do I need most in life?"
 
 #---------- doorstep
 
@@ -187,7 +182,7 @@ func _on_prophecy_timer_timeout():
 		_play_sfx(calculating)
 		get_node(nodes_paths["receive_button"]).disabled = false
 		get_node(nodes_paths["receive_button"]).text = "I'm ready"
-		get_node(nodes_paths["dialogue_label"]).text = "Please click the button above to receive your prophecy. Every sale is final-ish."
+		get_node(nodes_paths["dialogue_label"]).text = "Please click the button above to reveal your prophecy. Every sale is final-ish."
 	else:
 		prophecy_bar.value += prophechy_speed
 	$prophecy_stages/reading/TextureRect2.visible = !$prophecy_stages/reading/TextureRect2.visible
@@ -198,7 +193,7 @@ func _on_receive_button_pressed():
 	$prophecy_stages.current_tab = 4
 	_select_prophecy()
 	get_node(nodes_paths["receive_button"]).disabled = true
-	get_node(nodes_paths["dialogue_label"]).text = "Your prophecy is served. Consider leaving a 5 stars review."
+	get_node(nodes_paths["dialogue_label"]).text = "Thanks for using HIKIKOMORI WISDOM. Consider leaving a 5 stars review."
 #---------- reading
 
 
