@@ -235,7 +235,7 @@ func _prophecy_or():
 		" and ",
 		" with "
 	]
-	var max_loops = 5
+	var max_loops = 3
 	var loops = randi_range(2, max_loops)
 	var or_sentence:String
 	var current_word:String

@@ -202,7 +202,6 @@ theme = ExtResource("3_o8pwq")
 tabs_visible = false
 
 [node name="intro" type="MarginContainer" parent="prophecy_stages"]
-visible = false
 layout_mode = 2
 
 [node name="HFlowContainer" type="HFlowContainer" parent="prophecy_stages/intro"]
@@ -560,6 +559,7 @@ wait_time = 0.05
 autostart = true
 
 [node name="doorstep" type="MarginContainer" parent="prophecy_stages"]
+visible = false
 layout_mode = 2
 
 [node name="door_rect" type="TextureRect" parent="prophecy_stages/doorstep"]
